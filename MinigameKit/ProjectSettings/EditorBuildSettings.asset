@@ -6,6 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/TitleScreen.unity
+    guid: 9c6a90ff6362e6c4f96df88b7422b6b3
+  - enabled: 1
+    path: Assets/Scenes/ModeSelect.unity
+    guid: 1abeb859e9f847c4e942ea0800b5b46b
+  - enabled: 1
+    path: Assets/Scenes/MedleySettings.unity
+    guid: 5b452b54f22d0e84889b5a4dcbb6d1c9
+  - enabled: 1
+    path: Assets/Scenes/MedleyRoulette.unity
+    guid: 17f4a8fbf2509bd45a10548453eb6ccb
+  - enabled: 1
+    path: Assets/Scenes/MinigameSelect.unity
+    guid: e21f3bafb6f4fac41846b85d3a3a6116
+  - enabled: 1
+    path: Assets/Scenes/MinigameTemplate.unity
+    guid: e25eb898c1ab77440a4ba10bf7b86c1e
   m_configObjects: {}
