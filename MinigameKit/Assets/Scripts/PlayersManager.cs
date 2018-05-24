@@ -15,10 +15,9 @@ public class PlayersManager : MonoBehaviour {
     public static int currentLeftPlayer;
     public static int currentRightPlayer;
     /// <summary>
-    /// 0 = no results yet
-    /// 1 = Left Player Victory
+    /// 0 = DRAW;
+    /// 1 = Left Player Victory;
     /// 2 = Right Player Victory
-    /// 3 = DRAW
     /// </summary>
     public static int result;
 }

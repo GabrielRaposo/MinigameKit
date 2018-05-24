@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MinigameTemplate.unity
     guid: e25eb898c1ab77440a4ba10bf7b86c1e
+  - enabled: 1
+    path: Assets/Minigames/Samurais/Minigame.unity
+    guid: 4e523b56a2be27349ae823ab53316e6e
+  - enabled: 1
+    path: Assets/Minigames/Samurais/Tutorial.unity
+    guid: 41d0d0e91b284d846bfe6cb8fdf62b1d
   m_configObjects: {}

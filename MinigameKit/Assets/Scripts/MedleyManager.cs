@@ -26,6 +26,9 @@ public class MedleyManager : MonoBehaviour {
     public static int[] playerScore;
     private static Stack<matchup> matchupStack;
     
+    /// <summary>
+    /// Gera uma lista limpa de pontuações para os jogadores atuais. Deve ser chamada ao iniciar o modo.
+    /// </summary>
     void ResetScore() {
         playerScore = new int[numberOfPlayers];
         for (int i=0; i<numberOfPlayers; i++)
