@@ -15,7 +15,7 @@ public class MedleyManager : MonoBehaviour {
         }
 
         public override string ToString() {
-            return leftPlayer + " vs " + rightPlayer;
+            return "P" + leftPlayer + " vs P" + rightPlayer;
         }
     }
 

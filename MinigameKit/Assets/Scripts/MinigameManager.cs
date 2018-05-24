@@ -69,8 +69,9 @@ public class MinigameManager : MonoBehaviour {
         else if (range <= 0) return RandomMinigame(true);
         else {
             List<string> remainingMinigames = new List<string>(minigameNameList);
-            for (int i = usedMinigames.Count; i > usedMinigames.Count - range; i--)
-                remainingMinigames.Remove(usedMinigames[i]);
+            for (int i = 0; i < range; i++)
+                remainingMinigames.Remove(usedMinigames[usedMinigames.Count-1 - i]);
+            print("Remaining: " + ArrayPrint(remainingMinigames.ToArray()));
             int m = Random.Range(0, remainingMinigames.Count);
             usedMinigames.Add(remainingMinigames[m]);
             return remainingMinigames[m];
@@ -92,5 +93,19 @@ public class MinigameManager : MonoBehaviour {
     public static void OpenMinigame(string minigameName)
     {
         SceneManager.LoadScene("Minigames/" + minigameName + "/Minigame");
+    }
+    
+    string ArrayPrint(string[] array) {
+        var ret = "{ ";
+        for (int i = 0; i < array.Length - 1; i++)
+            ret += array[i] + ", ";
+        ret += array[array.Length - 1] + " }";
+        return ret;
+    }
+
+    public void TestStuff(int range) {
+        minigameNameList = new string[] { "game1", "game2", "game3", "game4", "game5", "game6", "game7", "game8" };
+        print("Primeiro: " + RandomMinigame(range));
+        print("Usados: " + ArrayPrint(usedMinigames.ToArray()));
     }
 }
