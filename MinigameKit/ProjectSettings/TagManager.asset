@@ -38,6 +38,24 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BG1
+    uniqueID: 480961079
+    locked: 0
+  - name: BG2
+    uniqueID: 304730073
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: FG1
+    uniqueID: 607168489
+    locked: 0
+  - name: FG2
+    uniqueID: 2770612177
+    locked: 0
+  - name: Effect
+    uniqueID: 517220165
+    locked: 0
+  - name: UI
+    uniqueID: 1054584761
     locked: 0
