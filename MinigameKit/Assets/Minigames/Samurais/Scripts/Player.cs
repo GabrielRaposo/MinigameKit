@@ -4,20 +4,16 @@ using UnityEngine;
 
 namespace Samurais
 {
-    public class Player : PlayerInfo {
+    public class Player : MonoBehaviour {
         const float DELTA_X = 10.5f;
 
 	    Animator _animator;
         Vector2 originalPosition;
-        SpriteRenderer spriteRenderer;
 
-	    public void Start ()
+	    void Start ()
         {
-            base.Start();
 		    _animator = GetComponent<Animator>();
             originalPosition = transform.position;
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            spriteRenderer.material.SetColor("Color_CCF45DDE", this.color);
         }
 
         public void Attack()

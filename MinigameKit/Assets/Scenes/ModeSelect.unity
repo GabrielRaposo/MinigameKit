@@ -90,7 +90,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -593,6 +593,7 @@ GameObject:
   - component: {fileID: 1241287536}
   - component: {fileID: 1241287539}
   - component: {fileID: 1241287538}
+  - component: {fileID: 1241287537}
   m_Layer: 5
   m_Name: Player4
   m_TagString: Untagged
@@ -618,6 +619,18 @@ RectTransform:
   m_AnchoredPosition: {x: 150, y: 100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1241287537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1241287535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250acd05acf838342ac6643fab49beac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: 3
 --- !u!114 &1241287538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1043,6 +1056,7 @@ GameObject:
   - component: {fileID: 1699553579}
   - component: {fileID: 1699553583}
   - component: {fileID: 1699553582}
+  - component: {fileID: 1699553581}
   - component: {fileID: 1699553580}
   - component: {fileID: 1699553584}
   m_Layer: 5
@@ -1082,6 +1096,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   side: 1
+--- !u!114 &1699553581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1699553578}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250acd05acf838342ac6643fab49beac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: 1
 --- !u!114 &1699553582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1219,7 +1245,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Minigames/Samurais/Minigame
+          m_StringArgument: MinigameSelect
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1267,6 +1293,7 @@ GameObject:
   - component: {fileID: 1902626668}
   - component: {fileID: 1902626672}
   - component: {fileID: 1902626671}
+  - component: {fileID: 1902626670}
   - component: {fileID: 1902626669}
   - component: {fileID: 1902626673}
   m_Layer: 5
@@ -1306,6 +1333,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   side: 0
+--- !u!114 &1902626670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1902626667}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250acd05acf838342ac6643fab49beac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: 0
 --- !u!114 &1902626671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1443,6 +1482,7 @@ GameObject:
   - component: {fileID: 2031481946}
   - component: {fileID: 2031481949}
   - component: {fileID: 2031481948}
+  - component: {fileID: 2031481947}
   m_Layer: 5
   m_Name: Player3
   m_TagString: Untagged
@@ -1468,6 +1508,18 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: 100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2031481947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2031481945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250acd05acf838342ac6643fab49beac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: 2
 --- !u!114 &2031481948
 MonoBehaviour:
   m_ObjectHideFlags: 0
