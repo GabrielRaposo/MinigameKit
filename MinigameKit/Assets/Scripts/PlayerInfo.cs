@@ -19,7 +19,7 @@ public class PlayerInfo : MonoBehaviour {
     /// <summary>
     /// Strings com os axis e botao de acao para controlar esse jogador.
     /// </summary>
-    public PlayerButtons playerButtons;
+    protected PlayerButtons playerButtons;
     protected Color color;
 
 
