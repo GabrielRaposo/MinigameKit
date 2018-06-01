@@ -15,10 +15,6 @@ namespace Samurais {
         [Header("Gameplay Variables")]
         public int minTimer;
         public int maxTimer;
-
-        KeyCode 
-            leftAction = KeyCode.Z,
-            rightAction = KeyCode.X;
 	
         enum GameState { Wait, Ready, Transition}
         GameState gameState;
@@ -32,7 +28,7 @@ namespace Samurais {
         void Update ()
         {
             //para testes
-            if (Input.GetKeyDown(KeyCode.Space)) {
+            if (Input.GetKeyDown(KeyCode.Z)) {
                 transitionDoor.ToggleState();
             }
 
@@ -42,12 +38,12 @@ namespace Samurais {
                     break;
 
                 case GameState.Ready:
-                    if (Input.GetKeyDown(leftAction))
+                    if (Input.GetButtonDown(leftSamurai.playerButtons.action))
                     {
                         DuelResults(leftSamurai, rightSamurai);
                     }
 
-                    if (Input.GetKeyDown(rightAction))
+                    else if (Input.GetButtonDown(rightSamurai.playerButtons.action))
                     {
                         DuelResults(rightSamurai, leftSamurai);
                     }
