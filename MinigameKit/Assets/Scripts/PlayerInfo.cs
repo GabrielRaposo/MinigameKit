@@ -19,17 +19,28 @@ public class PlayerInfo : MonoBehaviour {
     /// <summary>
     /// Strings com os axis e botao de acao para controlar esse jogador.
     /// </summary>
-    protected PlayerButtons playerButtons;
+    public PlayerButtons playerButtons;
     protected Color color;
 
 
     public virtual void Start() {
-        if (side) {
-            playerButtons = ControllerManager.instance.GetRightButtons();
-            playerId = PlayersManager.currentRightPlayer;
-        } else {
-            playerButtons = ControllerManager.instance.GetLeftButtons();
-            playerId = PlayersManager.currentLeftPlayer;
+        if (ControllerManager.instance != null) {
+            if (side) {
+                playerButtons = ControllerManager.instance.GetRightButtons();
+                playerId = PlayersManager.currentRightPlayer;
+            } else {
+                playerButtons = ControllerManager.instance.GetLeftButtons();
+                playerId = PlayersManager.currentLeftPlayer;
+            }
+        }
+        else {
+            if (side) {
+                playerButtons = new PlayerButtons("K2");
+                playerId = 2;
+            } else {
+                playerButtons = new PlayerButtons("K1");
+                playerId = 1;
+            }
         }
         color = PlayersManager.playerColor[playerId];
     }
