@@ -66,8 +66,8 @@ namespace Samurais
                 yield return new WaitForEndOfFrame();
             }
 
-            leftDoor.anchoredPosition  = Vector2.left * targetLeft;
-            rightDoor.anchoredPosition = Vector2.right * targetRight;
+            //leftDoor.anchoredPosition  = Vector2.left * targetLeft;
+            //rightDoor.anchoredPosition = Vector2.right * targetRight;
 
             isOpen = false;
         }

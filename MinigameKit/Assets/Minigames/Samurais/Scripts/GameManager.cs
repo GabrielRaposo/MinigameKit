@@ -5,12 +5,14 @@ using TMPro;
 
 namespace Samurais {
     public class GameManager : MonoBehaviour {
+
         #region Variables
         [Header("References")]
         public Player leftSamurai;
         public Player rightSamurai;
         public TextMeshProUGUI roundText;
         public TransitionDoor transitionDoor;
+        public GameObject sliceEffect;
 
         [Header("Gameplay Variables")]
         public int minTimer;
@@ -20,79 +22,145 @@ namespace Samurais {
             leftAction = KeyCode.Z,
             rightAction = KeyCode.X;
 	
-        enum GameState { Wait, Ready, Transition}
+        enum GameState {Intro, Wait, Ready, Outro}
         GameState gameState;
         #endregion
 
+        #region Main Loop
         private void Start()
         {
-            setWaitState();  
+            SetIntroState();  
         }
 
         void Update ()
         {
-            //para testes
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                transitionDoor.ToggleState();
-            }
-
             switch (gameState)
             {
                 case GameState.Wait:
+                    if (Input.GetKeyDown(leftAction)) {
+                        OffTimingAttack(true);
+                    }
+                    if (Input.GetKeyDown(rightAction)) {
+                        OffTimingAttack(false);
+                    }
                     break;
 
                 case GameState.Ready:
-                    if (Input.GetKeyDown(leftAction))
-                    {
-                        DuelResults(leftSamurai, rightSamurai);
-                    }
-
-                    if (Input.GetKeyDown(rightAction))
-                    {
-                        DuelResults(rightSamurai, leftSamurai);
+                    if (Input.GetKeyDown(leftAction)  && !leftSamurai.locked) {
+                        DuelResults(true);
+                    } else 
+                    if (Input.GetKeyDown(rightAction) && !rightSamurai.locked) {
+                        DuelResults(false);
                     }
                     //Depois lidar com empates, por enquanto prioriza o da esquerda
                     break;
 
                 default:
-                case GameState.Transition:
                     break;
             }
         }
 
-        void DuelResults(Player winner, Player loser)
+        void OffTimingAttack(bool leftAction)
         {
-            winner.Attack();
-            loser.Die();
-
-            setTransitionState();
+            if (leftAction)
+                leftSamurai.Miss();
+            else
+                rightSamurai.Miss();
         }
 
-        #region States
-        void setWaitState()
+        void DuelResults(bool leftWins)
+        {
+            sliceEffect.SetActive(true);
+
+            Player winner, loser;
+            if (leftWins)
+            {
+                winner = leftSamurai;
+                loser = rightSamurai;
+            } else
+            {
+                winner = rightSamurai;
+                loser = leftSamurai;
+            }
+
+            winner.Attack();
+
+            if (loser.health.value > 1) 
+                SetOutroState();
+            else 
+                EndMatch(leftWins);
+            
+            loser.Die();
+        }
+
+        void EndMatch(bool leftWins) {
+            if (leftWins) {
+                roundText.text = "Left wins!";
+                //MatchController.AddPoint(playerinfo[left<...
+            } else {
+                roundText.text = "Right wins!";
+                //MatchController.AddPoint(playerinfo[right<...
+            }
+
+            gameState = GameState.Outro;
+        }
+        #endregion
+
+        #region State Set
+        void SetWaitState()
         {
             float time = Random.Range(minTimer, maxTimer);
             StartCoroutine(waitingTimer(time));
-            roundText.text = "Wait";
+            roundText.text = "Espere";
             gameState = GameState.Wait;
         }
 
-        IEnumerator waitingTimer(float time) {
-            yield return new WaitForSeconds(time);
-            setReadyState();
-        }
-
-        void setReadyState()
+        void SetReadyState()
         {
-            roundText.text = "ATTACK!!";
+            roundText.text = "ATAQUE!";
             gameState = GameState.Ready;
         }
 
-        void setTransitionState()
+        void SetIntroState()
         {
             roundText.text = string.Empty;
-            gameState = GameState.Transition;
+            StartCoroutine(waitForDoorToOpen());
+            gameState = GameState.Intro;
+        }
+
+        void SetOutroState()
+        {
+            roundText.text = string.Empty;
+            StartCoroutine(waitForDoorToClose());
+            gameState = GameState.Outro;
+        }
+
+        IEnumerator waitingTimer(float time)
+        {
+            yield return new WaitForSeconds(time);
+            SetReadyState();
+        }
+
+        IEnumerator waitForDoorToOpen()
+        {
+            transitionDoor.ToggleState();
+            yield return new WaitUntil(() => transitionDoor.isOpen);
+            SetWaitState();
+        }
+
+        IEnumerator waitForDoorToClose()
+        {
+            yield return new WaitForSeconds(1);
+
+            transitionDoor.ToggleState();
+            yield return new WaitUntil(() => !transitionDoor.isOpen);
+
+            leftSamurai.Reset();
+            rightSamurai.Reset();
+            yield return new WaitForSeconds(1);
+            SetIntroState();
         }
         #endregion
+
     }
 }
