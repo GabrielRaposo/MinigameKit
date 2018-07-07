@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Minigames/Samurais/Minigame.unity
+- path: Assets/Scenes/ModeSelect.unity
   isLoaded: 1
   isActive: 1
