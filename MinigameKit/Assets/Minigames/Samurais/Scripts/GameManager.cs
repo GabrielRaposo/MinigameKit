@@ -21,7 +21,9 @@ namespace Samurais {
         KeyCode 
             leftAction = KeyCode.Z,
             rightAction = KeyCode.X;
-	
+
+        AudioSource bgm; 
+
         enum GameState {Intro, Wait, Ready, Outro}
         GameState gameState;
         #endregion
@@ -29,6 +31,8 @@ namespace Samurais {
         #region Main Loop
         private void Start()
         {
+            bgm = GetComponent<AudioSource>();
+
             SetIntroState();  
         }
 
@@ -77,10 +81,12 @@ namespace Samurais {
             {
                 winner = leftSamurai;
                 loser = rightSamurai;
+                sliceEffect.GetComponent<RectTransform>().rotation = Quaternion.Euler(Vector3.up * 0);
             } else
             {
                 winner = rightSamurai;
                 loser = leftSamurai;
+                sliceEffect.GetComponent<RectTransform>().rotation = Quaternion.Euler(Vector3.up * 180);
             }
 
             winner.Attack();
@@ -107,9 +113,17 @@ namespace Samurais {
         #endregion
 
         #region State Set
+        void SetIntroState()
+        {
+            roundText.text = string.Empty;
+            StartCoroutine(waitForDoorToOpen());
+            gameState = GameState.Intro;
+        }
+
         void SetWaitState()
         {
-            float time = Random.Range(minTimer, maxTimer);
+            float time = Random.Range((float)minTimer, (float)maxTimer);
+            bgm.Play();
             StartCoroutine(waitingTimer(time));
             roundText.text = "Espere";
             gameState = GameState.Wait;
@@ -117,15 +131,10 @@ namespace Samurais {
 
         void SetReadyState()
         {
+            bgm.Stop();
             roundText.text = "ATAQUE!";
+            roundText.GetComponent<AudioSource>().Play();
             gameState = GameState.Ready;
-        }
-
-        void SetIntroState()
-        {
-            roundText.text = string.Empty;
-            StartCoroutine(waitForDoorToOpen());
-            gameState = GameState.Intro;
         }
 
         void SetOutroState()
