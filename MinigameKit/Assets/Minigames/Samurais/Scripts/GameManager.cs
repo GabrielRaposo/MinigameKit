@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 namespace Samurais {
@@ -18,13 +19,13 @@ namespace Samurais {
         public int minTimer;
         public int maxTimer;
 
-        KeyCode 
-            leftAction = KeyCode.Z,
-            rightAction = KeyCode.X;
+        string 
+            leftAction = "z",
+            rightAction = "x";
 
         AudioSource bgm; 
 
-        enum GameState {Intro, Wait, Ready, Outro}
+        enum GameState {Intro, Wait, Ready, Outro, End}
         GameState gameState;
         #endregion
 
@@ -32,7 +33,6 @@ namespace Samurais {
         private void Start()
         {
             bgm = GetComponent<AudioSource>();
-
             SetIntroState();  
         }
 
@@ -41,19 +41,19 @@ namespace Samurais {
             switch (gameState)
             {
                 case GameState.Wait:
-                    if (Input.GetKeyDown(leftAction)) {
+                    if (Input.GetButtonDown(leftSamurai.playerButtons.action)) {
                         OffTimingAttack(true);
                     }
-                    if (Input.GetKeyDown(rightAction)) {
+                    if (Input.GetButtonDown(rightSamurai.playerButtons.action)) {
                         OffTimingAttack(false);
                     }
                     break;
 
                 case GameState.Ready:
-                    if (Input.GetKeyDown(leftAction)  && !leftSamurai.locked) {
+                    if (Input.GetButtonDown(leftSamurai.playerButtons.action)  && !leftSamurai.locked) {
                         DuelResults(true);
                     } else 
-                    if (Input.GetKeyDown(rightAction) && !rightSamurai.locked) {
+                    if (Input.GetButtonDown(rightSamurai.playerButtons.action) && !rightSamurai.locked) {
                         DuelResults(false);
                     }
                     //Depois lidar com empates, por enquanto prioriza o da esquerda
@@ -94,21 +94,9 @@ namespace Samurais {
             if (loser.health.value > 1) 
                 SetOutroState();
             else 
-                EndMatch(leftWins);
+                SetEndState(leftWins);
             
             loser.Die();
-        }
-
-        void EndMatch(bool leftWins) {
-            if (leftWins) {
-                roundText.text = "Left wins!";
-                //MatchController.AddPoint(playerinfo[left<...
-            } else {
-                roundText.text = "Right wins!";
-                //MatchController.AddPoint(playerinfo[right<...
-            }
-
-            gameState = GameState.Outro;
         }
         #endregion
 
@@ -144,6 +132,12 @@ namespace Samurais {
             gameState = GameState.Outro;
         }
 
+        void SetEndState(bool leftWins)
+        {
+            StartCoroutine(endMinigame(leftWins));
+            gameState = GameState.End;
+        }
+
         IEnumerator waitingTimer(float time)
         {
             yield return new WaitForSeconds(time);
@@ -169,6 +163,46 @@ namespace Samurais {
             yield return new WaitForSeconds(1);
             SetIntroState();
         }
+
+        IEnumerator endMinigame(bool leftWins)
+        {
+            ModeManager.GameState currentState = ModeManager.State;
+            switch (currentState)
+            {
+                default:
+                case ModeManager.GameState.OneByOne:
+
+                    if (leftWins) {
+                        roundText.text = "Left wins!";
+                        //MatchController.AddPoint(playerinfo[left<...
+                    }
+                    else {
+                        roundText.text = "Right wins!";
+                        //MatchController.AddPoint(playerinfo[right<...
+                    }
+
+                    AsyncOperation sceneLoadOperation = SceneManager.LoadSceneAsync(ScenesIndexList.MinigameHub());
+                    sceneLoadOperation.allowSceneActivation = false;
+                    yield return new WaitForSeconds(2);
+                    sceneLoadOperation.allowSceneActivation = true;
+
+                break;
+
+                case ModeManager.GameState.Medley:
+
+                    if (leftWins) {
+                        roundText.text = "Left wins!";
+                        //MatchController.AddPoint(playerinfo[left<...
+                    } else {
+                        roundText.text = "Right wins!";
+                        //MatchController.AddPoint(playerinfo[right<...
+                    }
+                    //aguarde
+
+                break;
+            }
+        }
+
         #endregion
 
     }

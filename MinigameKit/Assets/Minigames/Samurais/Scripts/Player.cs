@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Samurais
 {
-    public class Player : MonoBehaviour {
+    public class Player : PlayerInfo {
         const float DELTA_X = 11.5f;
 
         Animator _animator;
@@ -14,10 +14,13 @@ namespace Samurais
         public GameObject timingWarning;
         [HideInInspector] public bool locked;
 
-	    void Start ()
+	    public override void Start ()
         {
-		    _animator = GetComponent<Animator>();
+            base.Start();
+            _animator = GetComponent<Animator>();
             originalPosition = transform.position;
+
+            GetComponent<SpriteRenderer>().color = base.color;
         }
 
         public void Attack()

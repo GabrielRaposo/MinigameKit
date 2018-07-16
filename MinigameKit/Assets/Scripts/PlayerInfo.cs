@@ -32,6 +32,7 @@ public class PlayerInfo : MonoBehaviour {
                 playerButtons = ControllerManager.instance.GetLeftButtons();
                 playerId = PlayersManager.currentLeftPlayer;
             }
+            Debug.Log("Debug");
         }
         else {
             if (side) {

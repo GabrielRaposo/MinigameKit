@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -675,6 +675,7 @@ GameObject:
   - component: {fileID: 1346932951}
   - component: {fileID: 1346932950}
   - component: {fileID: 1346932949}
+  - component: {fileID: 1346932952}
   m_Layer: 5
   m_Name: MedleyButton
   m_TagString: Untagged
@@ -786,6 +787,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1346932947}
+--- !u!114 &1346932952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1346932947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85e0951076ed88b478b589d31b88f054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 1
 --- !u!1 &1368730236
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,6 +1185,7 @@ GameObject:
   - component: {fileID: 1885646186}
   - component: {fileID: 1885646185}
   - component: {fileID: 1885646184}
+  - component: {fileID: 1885646187}
   m_Layer: 5
   m_Name: MinigamesButton
   m_TagString: Untagged
@@ -1283,6 +1297,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1885646182}
+--- !u!114 &1885646187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1885646182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85e0951076ed88b478b589d31b88f054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
 --- !u!1 &1902626667
 GameObject:
   m_ObjectHideFlags: 0

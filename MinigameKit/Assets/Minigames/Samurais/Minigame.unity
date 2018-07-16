@@ -464,6 +464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff140df818270074eb3bdad274627558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  side: 0
   health: {fileID: 1083762996}
   timingWarning: {fileID: 1775191471}
   locked: 0
@@ -1234,6 +1235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff140df818270074eb3bdad274627558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  side: 1
   health: {fileID: 229511012}
   timingWarning: {fileID: 238735609}
   locked: 0
