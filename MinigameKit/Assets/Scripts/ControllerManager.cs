@@ -47,7 +47,7 @@ public class ControllerManager : MonoBehaviour {
         for (int i = 1; i < 5; i++)
             if (Input.GetButtonDown("J" + i + "Action"))
                 return "J" + i;
-        return null;
+        return "";
     }
     
     /// <summary>
@@ -59,21 +59,37 @@ public class ControllerManager : MonoBehaviour {
     }
 
     /// <summary>
+    /// Reseta os controles para que se possa fazer o setup.
+    /// </summary>
+    public void ResetSetup() {
+        leftController = "";
+        rightController = "";
+    }
+
+    /// <summary>
     /// Ao fazer o setup de controles, fazer:
-    /// leftController = null; rightController = null;
+    /// ResetSetup();
     /// E colocar essa funcao em um Update.
     /// </summary>
     public void ControllerSetup() {
         var controller = GetAnyActionButton();
-        if (controller != null) {
-            if (leftController == null) {
+        if (controller != "") {
+            if (leftController == "") {
                 leftController = controller;
                 leftButtons = new PlayerButtons(leftController);
-            } else if (rightController == null) {
+            } else if (rightController == "" && controller != leftController) {
                 rightController = controller;
                 rightButtons = new PlayerButtons(rightController);
             }
         }
+    }
+    
+    public string GetLeftController() {
+        return leftController;
+    }
+    
+    public string GetRightController() {
+        return rightController;
     }
 
     public PlayerButtons GetLeftButtons() {
@@ -83,5 +99,4 @@ public class ControllerManager : MonoBehaviour {
     public PlayerButtons GetRightButtons() {
         return rightButtons;
     }
-
 }
