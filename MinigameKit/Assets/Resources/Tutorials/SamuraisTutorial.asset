@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5c82f7b83b063c4ea7c016ab8887c1d, type: 3}
   m_Name: SamuraisTutorial
   m_EditorClassIdentifier: 
-  minigameName: Samurais
+  minigameName: Samurai Showdown
   gameRules: Attack only at the right time. The first one to get 3 hits is out!
   controls: Press the Action Button to attack.
   image: {fileID: 2800000, guid: 2b9fe7505267b684d8ea7bf71b9b1703, type: 3}

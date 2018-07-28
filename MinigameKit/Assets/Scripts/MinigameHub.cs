@@ -20,7 +20,7 @@ public class MinigameHub : MonoBehaviour {
         for(int i = 0; i < MinigameManager.minigameNameList.Length; i++) {
             var i2 = i; // Gambiarra obrigatoria porque delegates
             buttonList[i] = (GameObject)Instantiate(buttonPrefab, interactableArea);
-            buttonList[i].GetComponentInChildren<Text>().text = MinigameManager.minigameNameList[i];
+            buttonList[i].GetComponentInChildren<Text>().text = MinigameManager.minigameDisplayNameList[i];
             buttonList[i].GetComponent<Button>().onClick.AddListener(delegate { mgm.OpenMinigameTutorial(MinigameManager.minigameNameList[i2]); });
         }
 	}

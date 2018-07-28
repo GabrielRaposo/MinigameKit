@@ -4,11 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MinigameManager : MonoBehaviour {
-    
+
     /// <summary>
     /// Lista publica com os nomes de todos os minigames no jogo. Esses nomes sao usados para identificar seus diretorios.
     /// </summary>
     public static string[] minigameNameList;
+    /// <summary>
+    /// Lista publica com os nomes finais de todos os minigames no jogo. Esses nomes sao usados nos Buttons para seleciona-los.
+    /// </summary>
+    public static string[] minigameDisplayNameList;
     /// <summary>
     /// Nome do proximo minigame que sera aberto.
     /// </summary>
@@ -22,8 +26,11 @@ public class MinigameManager : MonoBehaviour {
         if (minigameNameList == null || minigameNameList.Length < 1) {
             var minigameList = Resources.LoadAll<TutorialObject>("Tutorials");
             minigameNameList = new string[minigameList.Length];
-            for (int i = 0; i < minigameList.Length; i++)
+            minigameDisplayNameList = new string[minigameList.Length];
+            for (int i = 0; i < minigameList.Length; i++) {
                 minigameNameList[i] = minigameList[i].name.Substring(0, minigameList[i].name.Length - 8);
+                minigameDisplayNameList[i] = minigameList[i].minigameName;
+            }
         }
 
     }
