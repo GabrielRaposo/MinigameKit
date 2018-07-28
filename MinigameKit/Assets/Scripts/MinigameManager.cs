@@ -2,26 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.IO;
 
 public class MinigameManager : MonoBehaviour {
-
-    private DirectoryInfo minigamesPath = new DirectoryInfo("Assets/Minigames");
+    
     /// <summary>
     /// Lista publica com os nomes de todos os minigames no jogo. Esses nomes sao usados para identificar seus diretorios.
     /// </summary>
     public static string[] minigameNameList;
     /// <summary>
+    /// Nome do proximo minigame que sera aberto.
+    /// </summary>
+    public static string nextMinigame;
+    /// <summary>
     /// Lista de minigames ja usados. Usada para evitar minigames repetidos.
     /// </summary>
     private List<string> usedMinigames = new List<string>();
 
-	void Start () {
+	void Awake () {
         if (minigameNameList == null || minigameNameList.Length < 1) {
-            var minigameList = minigamesPath.GetDirectories();
+            var minigameList = Resources.LoadAll<TutorialObject>("Tutorials");
             minigameNameList = new string[minigameList.Length];
             for (int i = 0; i < minigameList.Length; i++)
-                minigameNameList[i] = minigameList[i].Name;
+                minigameNameList[i] = minigameList[i].name.Substring(0, minigameList[i].name.Length - 8);
         }
 
     }
@@ -82,17 +84,18 @@ public class MinigameManager : MonoBehaviour {
     /// Abre o tutorial de um minigame
     /// </summary>
     /// <param name="tutorialName">Nome do minigame (nao eh case sensitive)</param>
-    public static void OpenMinigameTutorial(string minigameName) {
-        SceneManager.LoadScene("Minigames/" + minigameName + "/Tutorial");
+    public void OpenMinigameTutorial(string minigameName) {
+        nextMinigame = minigameName;
+        SceneManager.LoadScene("MinigameTutorial");
     }
 
     /// <summary>
     /// Abre o minigame em si
     /// </summary>
     /// <param name="tutorialName">Nome do minigame (nao eh case sensitive)</param>
-    public static void OpenMinigame(string minigameName)
+    public void OpenMinigame(string minigameName)
     {
-        SceneManager.LoadScene("Minigames/" + minigameName + "/Minigame");
+        SceneManager.LoadScene(minigameName);
     }
     
     string ArrayPrint(string[] array) {
