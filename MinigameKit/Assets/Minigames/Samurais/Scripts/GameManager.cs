@@ -104,7 +104,7 @@ namespace Samurais {
         void SetIntroState()
         {
             roundText.text = string.Empty;
-            StartCoroutine(waitForDoorToOpen());
+            StartCoroutine(WaitForDoorToOpen());
             gameState = GameState.Intro;
         }
 
@@ -112,7 +112,7 @@ namespace Samurais {
         {
             float time = Random.Range((float)minTimer, (float)maxTimer);
             bgm.Play();
-            StartCoroutine(waitingTimer(time));
+            StartCoroutine(WaitingTimer(time));
             roundText.text = "Espere";
             gameState = GameState.Wait;
         }
@@ -134,17 +134,17 @@ namespace Samurais {
 
         void SetEndState(bool leftWins)
         {
-            StartCoroutine(endMinigame(leftWins));
+            StartCoroutine(EndMinigame(leftWins));
             gameState = GameState.End;
         }
 
-        IEnumerator waitingTimer(float time)
+        IEnumerator WaitingTimer(float time)
         {
             yield return new WaitForSeconds(time);
             SetReadyState();
         }
 
-        IEnumerator waitForDoorToOpen()
+        IEnumerator WaitForDoorToOpen()
         {
             transitionDoor.ToggleState();
             yield return new WaitUntil(() => transitionDoor.isOpen);
@@ -164,43 +164,20 @@ namespace Samurais {
             SetIntroState();
         }
 
-        IEnumerator endMinigame(bool leftWins)
+        IEnumerator EndMinigame(bool leftWins)
         {
-            ModeManager.GameState currentState = ModeManager.State;
-            switch (currentState)
-            {
-                default:
-                case ModeManager.GameState.OneByOne:
-
-                    if (leftWins) {
-                        roundText.text = "Left wins!";
-                        //MatchController.AddPoint(playerinfo[left<...
-                    }
-                    else {
-                        roundText.text = "Right wins!";
-                        //MatchController.AddPoint(playerinfo[right<...
-                    }
-
-                    AsyncOperation sceneLoadOperation = SceneManager.LoadSceneAsync(ScenesIndexList.MinigameHub());
-                    sceneLoadOperation.allowSceneActivation = false;
-                    yield return new WaitForSeconds(2);
-                    sceneLoadOperation.allowSceneActivation = true;
-
-                break;
-
-                case ModeManager.GameState.Medley:
-
-                    if (leftWins) {
-                        roundText.text = "Left wins!";
-                        //MatchController.AddPoint(playerinfo[left<...
-                    } else {
-                        roundText.text = "Right wins!";
-                        //MatchController.AddPoint(playerinfo[right<...
-                    }
-                    //aguarde
-
-                break;
+            if (leftWins) {
+                roundText.text = "Left wins!";
+                PlayersManager.result = PlayersManager.Result.LeftWin;
             }
+            else {
+                roundText.text = "Right wins!";
+                PlayersManager.result = PlayersManager.Result.RightWin;
+            }
+
+            yield return new WaitForSeconds(3);
+
+            StartCoroutine(ModeManager.TransitionToMenu());
         }
 
         #endregion

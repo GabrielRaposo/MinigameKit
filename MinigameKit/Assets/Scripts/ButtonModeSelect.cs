@@ -12,7 +12,7 @@ public class ButtonModeSelect : MonoBehaviour {
         Button button = GetComponent<Button>();
         if (button) {
             button.onClick.AddListener( 
-                () => ModeManager.SetState(state) 
+                () => ModeManager.State = state
             );
         } else Debug.Log("'Button' não pôde ser encontrado.");
 	}

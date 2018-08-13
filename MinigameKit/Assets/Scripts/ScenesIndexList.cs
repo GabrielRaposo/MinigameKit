@@ -7,12 +7,12 @@ public class ScenesIndexList {
 
     static public int MedleyScreen ()
     {
-        return 3;
+        return 4;
     }
 
     static public int MinigameHub ()
     {
-        return 4;
+        return 5;
     }
 
 }

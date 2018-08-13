@@ -64,20 +64,20 @@ namespace Samurais
 
         public void Die()
         {
-            ClearVisualQueues();
+            ClearVisualCues();
             health.TakeDamage();
             _animator.SetTrigger("Die");
         }
 
         public void Reset()
         {
-            ClearVisualQueues();
+            ClearVisualCues();
             locked = false;
             _animator.SetTrigger("Reset");
             transform.position = originalPosition;
         }
 
-        void ClearVisualQueues()
+        void ClearVisualCues()
         {
             StopAllCoroutines();
             if (timingWarning) timingWarning.SetActive(false);

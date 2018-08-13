@@ -92,16 +92,18 @@ public class MedleyManager : MonoBehaviour {
     /// Chamar depois de concluido um minigame. Encapsula a atualizacao de pontos dos envolvidos.
     /// </summary>
     private void UpdateScore() {
-        if (PlayersManager.result == 1) {
-            playerScore[PlayersManager.currentLeftPlayer]++;
-        }
-        else if (PlayersManager.result == 2) {
-            playerScore[PlayersManager.currentRightPlayer]++;
-        }
-        else {
-            // Caso empate de ponto para ambos:
-            // playerScore[PlayersManager.currentLeftPlayer]++;
-            // playerScore[PlayersManager.currentRightPlayer]++;
+        switch (PlayersManager.result)
+        {
+            case PlayersManager.Result.Draw:
+                break;
+
+            case PlayersManager.Result.LeftWin:
+                playerScore[PlayersManager.currentLeftPlayer]++;
+                break;
+
+            case PlayersManager.Result.RightWin:
+                playerScore[PlayersManager.currentRightPlayer]++;
+                break;
         }
     }
 }
