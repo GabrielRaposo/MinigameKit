@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Minigames/Samurais/Samurais.unity
+- path: Assets/Minigames/Comidinhas/Comidinhas.unity
   isLoaded: 1
   isActive: 1
