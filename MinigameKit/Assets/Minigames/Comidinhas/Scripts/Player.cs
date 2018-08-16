@@ -21,12 +21,11 @@ namespace Comidinhas
 		    
 	    }
 
-        private void OnCollisionEnter(Collision col)
+        private void OnTriggerEnter2D(Collider2D col)
         {
-            if (col.gameObject.CompareTag("Comida"))
+            if (col.gameObject.tag == "Comida")
             {
                 Destroy(col.gameObject);
-                
             }
         }
     }

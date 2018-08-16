@@ -8,11 +8,15 @@ namespace Comidinhas
 {
     public class GameController : MonoBehaviour {
 
-        public bool startTimer = false;
+        public static bool startGame = false;
         public float readyTime = 3f;
         public float time = 30f;
+        public float playerSpeed = 10f;
         public TextMeshProUGUI timerText;
         public TextMeshProUGUI readyTimerText;
+        public Player leftFatty;
+        public Player rightFatty;
+        
 
 	    void Start () {
 
@@ -25,10 +29,12 @@ namespace Comidinhas
 	    
 	    void Update () {
 
-            if (startTimer)
+            if (startGame)
             {
                 time -= Time.deltaTime;
                 timerText.text = time.ToString("0");
+
+                InputVerification();
             }
             else
             {
@@ -39,11 +45,19 @@ namespace Comidinhas
 
 	    }
 
+
+        void InputVerification()
+        {
+            if (Input.GetButton(leftFatty.playerButtons.horizontal)) leftFatty.transform.Translate(Vector3.right * playerSpeed * Time.deltaTime);
+            if (Input.GetButton(rightFatty.playerButtons.horizontal)) rightFatty.transform.Translate(Vector3.left * playerSpeed * Time.deltaTime);
+        }
+
+
         IEnumerator ReadyTimer()
         {
            
             yield return new WaitForSeconds(3);
-            startTimer = true;
+            startGame = true;
             readyTimerText.enabled = false;
             StopCoroutine(ReadyTimer());
         }

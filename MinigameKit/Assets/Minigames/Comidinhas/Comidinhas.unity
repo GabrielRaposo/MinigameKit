@@ -140,11 +140,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ef349621beb2ff4abfc53a423bfa9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTimer: 0
   readyTime: 3
   time: 30
+  playerSpeed: 10
   timerText: {fileID: 315980274}
   readyTimerText: {fileID: 494135547}
+  leftFatty: {fileID: 196674033}
+  rightFatty: {fileID: 906488379}
 --- !u!4 &126632389
 Transform:
   m_ObjectHideFlags: 0
@@ -168,6 +170,8 @@ GameObject:
   - component: {fileID: 196674032}
   - component: {fileID: 196674031}
   - component: {fileID: 196674033}
+  - component: {fileID: 196674034}
+  - component: {fileID: 196674035}
   m_Layer: 0
   m_Name: Barrigudinho Player 1
   m_TagString: Untagged
@@ -246,6 +250,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   side: 0
+--- !u!58 &196674034
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 196674030}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!50 &196674035
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 196674030}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 6
 --- !u!1 &315980272
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,4 +1139,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2123776625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2123776627}
+  - component: {fileID: 2123776626}
+  m_Layer: 0
+  m_Name: FoodGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2123776626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2123776625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6b10a7e1e2c77642afe4bcbb14eb429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodPool:
+  - {fileID: 1279788738479470, guid: 950f788263d3c954fab5e09ca9e420b9, type: 2}
+  - {fileID: 1588692746096604, guid: 0601bfb78fa8ff44aaa90a1feca3f677, type: 2}
+  generationTime: 0
+--- !u!4 &2123776627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2123776625}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 100, z: 1017.2294}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
