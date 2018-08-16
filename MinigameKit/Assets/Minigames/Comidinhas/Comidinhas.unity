@@ -113,6 +113,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &81506966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 81506967}
+  - component: {fileID: 81506968}
+  m_Layer: 0
+  m_Name: Colisor Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &81506967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 81506966}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.05, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_Children: []
+  m_Father: {fileID: 906488378}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &81506968
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 81506966}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.2}
+  m_Size: {x: 3, y: 4}
+  m_Direction: 0
 --- !u!1 &126632387
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +193,7 @@ MonoBehaviour:
   leftFatty_x: {x: 0, y: 0, z: 0}
   rightFatty: {fileID: 906488379}
   rightFatty_x: {x: 0, y: 0, z: 0}
+  playerColliding: 0
 --- !u!4 &126632389
 Transform:
   m_ObjectHideFlags: 0
@@ -176,7 +221,7 @@ GameObject:
   - component: {fileID: 196674034}
   m_Layer: 0
   m_Name: Barrigudinho Player 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,7 +281,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -60, y: -45, z: 0}
   m_LocalScale: {x: 15, y: 15, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 975064006}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -253,6 +299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   side: 0
   scoreboardText: {fileID: 742133941}
+  gameController: {fileID: 126632388}
   score: 0
 --- !u!68 &196674034
 EdgeCollider2D:
@@ -1058,7 +1105,7 @@ GameObject:
   - component: {fileID: 906488380}
   m_Layer: 0
   m_Name: Barrigudinho Player 2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1118,7 +1165,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 60, y: -45, z: 0}
   m_LocalScale: {x: 15, y: 15, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 81506967}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1135,6 +1183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   side: 1
   scoreboardText: {fileID: 2026711714}
+  gameController: {fileID: 126632388}
   score: 0
 --- !u!68 &906488380
 EdgeCollider2D:
@@ -1176,7 +1225,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 6
 --- !u!1 &965091805
 GameObject:
   m_ObjectHideFlags: 0
@@ -1246,6 +1295,50 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 965091805}
   m_CullTransparentMesh: 0
+--- !u!1 &975064005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 975064006}
+  - component: {fileID: 975064007}
+  m_Layer: 0
+  m_Name: Colisor Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &975064006
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 975064005}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 196674032}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &975064007
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 975064005}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.2}
+  m_Size: {x: 3, y: 4}
+  m_Direction: 0
 --- !u!1 &1204909011
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,7 +23,6 @@ namespace Comidinhas
                     generationTime = Random.Range(0.2f, 1.2f);
                     SpawnFood();
                 }
-                Debug.Log(generationTime);
                 generationTime -= Time.deltaTime;
             //}
 	    }
