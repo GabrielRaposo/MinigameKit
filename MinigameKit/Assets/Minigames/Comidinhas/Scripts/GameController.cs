@@ -15,10 +15,12 @@ namespace Comidinhas
         public TextMeshProUGUI timerText;
         public TextMeshProUGUI readyTimerText;
         public Player leftFatty;
+        public Vector3 leftFatty_x;
         public Player rightFatty;
-        
+        public Vector3 rightFatty_x;
 
-	    void Start () {
+
+        void Start () {
 
             timerText.text = null;
 
@@ -48,8 +50,14 @@ namespace Comidinhas
 
         void InputVerification()
         {
-            if (Input.GetButton(leftFatty.playerButtons.horizontal)) leftFatty.transform.Translate(Vector3.right * playerSpeed * Time.deltaTime);
-            if (Input.GetButton(rightFatty.playerButtons.horizontal)) rightFatty.transform.Translate(Vector3.left * playerSpeed * Time.deltaTime);
+            leftFatty_x = new Vector3(Input.GetAxisRaw(leftFatty.playerButtons.horizontal), 0, 0);
+            rightFatty_x = new Vector3(Input.GetAxisRaw(rightFatty.playerButtons.horizontal), 0, 0);
+
+            leftFatty.transform.Translate(leftFatty_x * playerSpeed * Time.deltaTime);
+            rightFatty.transform.Translate(rightFatty_x * playerSpeed * Time.deltaTime);
+
+            //if (Input.GetButton(leftFatty.playerButtons.horizontal)) leftFatty.transform.Translate(Vector3.right * playerSpeed * Time.deltaTime);
+            //if (Input.GetButton(rightFatty.playerButtons.horizontal)) rightFatty.transform.Translate(Vector3.left * playerSpeed * Time.deltaTime);
         }
 
 

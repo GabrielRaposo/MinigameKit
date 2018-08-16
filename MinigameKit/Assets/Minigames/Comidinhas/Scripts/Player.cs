@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace Comidinhas
 {
     public class Player : PlayerInfo {
 
-	    
+        public TextMeshProUGUI scoreboardText;
+        public int score;
 
 
 	    public override void Start() {
@@ -26,6 +28,8 @@ namespace Comidinhas
             if (col.gameObject.tag == "Comida")
             {
                 Destroy(col.gameObject);
+                score++;
+                scoreboardText.text = score.ToString();
             }
         }
     }

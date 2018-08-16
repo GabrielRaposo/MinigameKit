@@ -6,8 +6,10 @@ namespace Comidinhas
 {
     public class FoodGen : MonoBehaviour {
 
-        public GameObject[] foodPool = new GameObject[2];
+        public GameObject[] foodPool = new GameObject[4];
         public float generationTime;
+        public float max_x;
+        public float min_x;
 
 	    void Start () {
 		
@@ -18,7 +20,7 @@ namespace Comidinhas
             //{
                 if(generationTime <= 0)
                 {
-                    generationTime = Random.Range(0.2f, 1.5f);
+                    generationTime = Random.Range(0.2f, 1.2f);
                     SpawnFood();
                 }
                 Debug.Log(generationTime);
@@ -28,7 +30,7 @@ namespace Comidinhas
 
         void SpawnFood()
         {
-            Instantiate(foodPool[Random.Range(0, 2)], new Vector3(Random.Range(-100f, 100f), transform.position.y, 0f), transform.rotation);
+            Instantiate(foodPool[Random.Range(0, 4)], new Vector3(Random.Range(-min_x, max_x), transform.position.y, 0f), transform.rotation);
         }
     }
 }
