@@ -29,7 +29,7 @@ public class MinigameManager : MonoBehaviour {
             minigameDisplayNameList = new string[minigameList.Length];
             for (int i = 0; i < minigameList.Length; i++) {
                 minigameNameList[i] = minigameList[i].name.Substring(0, minigameList[i].name.Length - 8);
-                minigameDisplayNameList[i] = minigameList[i].minigameName;
+                minigameDisplayNameList[i] = minigameList[i].codename;
             }
         }
 

@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ControllerSetup : MonoBehaviour {
 
-    public Text leftPlayer, rightPlayer;
-    public Button startButton;
-    
-	void Awake () {
-		if (ControllerManager.instance != null) {
-            ControllerManager.instance.ResetSetup();
-        }
+    public TextMeshProUGUI leftPlayer, rightPlayer;
+    public Button returnButton;
+
+    void OnEnable () {
+        ControllerManager.instance.ResetSetup();
         leftPlayer.text = "";
         rightPlayer.text = "";
-        startButton.interactable = false;
+        if(returnButton) returnButton.interactable = false;
     }
 	
 	void Update () {
@@ -24,7 +23,7 @@ public class ControllerSetup : MonoBehaviour {
                 leftPlayer.text = ControllerManager.instance.GetLeftController();
                 rightPlayer.text = ControllerManager.instance.GetRightController();
             } else {
-                startButton.interactable = true;
+                if (returnButton) returnButton.interactable = true;
             }
         }
     }

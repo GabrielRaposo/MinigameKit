@@ -15,7 +15,7 @@ public class MinigameTutorial : MonoBehaviour {
     
 	void Start () {
         tutorialObject = Resources.Load<TutorialObject>("Tutorials/" + MinigameManager.nextMinigame + "Tutorial");
-        minigameName.text = tutorialObject.minigameName;
+        minigameName.text = tutorialObject.codename;
         minigameDesc.text = tutorialObject.gameRules;
         minigameThumbnail.texture = tutorialObject.image;
 	}

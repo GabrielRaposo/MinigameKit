@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: SamuraisTutorial
   m_EditorClassIdentifier: 
   minigameName: Samurai Showdown
-  gameRules: Attack only at the right time. The first one to get 3 hits is out!
-  controls: Press the Action Button to attack.
+  codename: Samurais
+  gameRules: "CORTA OS CARA AT\xC9 GANHAR!!\n"
+  controls: "Aperta os but\xE3o a\xEA"
   image: {fileID: 2800000, guid: 2b9fe7505267b684d8ea7bf71b9b1703, type: 3}

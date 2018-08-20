@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//Classe responsável por guardar o endereço das principais telas de jogo
-public class ScenesIndexList {
+//Classe responsável por guardar o endereço das principais telas do menu principal
+public class MenuIndexList {
 
-    static public int MedleyScreen ()
+    static public string MedleyScreen ()
     {
-        return 4;
+        return "medley";
     }
 
-    static public int MinigameHub ()
+    static public string MinigameHub ()
     {
-        return 5;
+        return "freeplay";
     }
 
 }

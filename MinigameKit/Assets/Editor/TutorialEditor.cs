@@ -11,6 +11,7 @@ public class TutorialEditor : Editor {
         var textStyle = new GUIStyle("TextArea");
         textStyle.wordWrap = true;
         var minigameName = serializedObject.FindProperty("minigameName");
+        var codename = serializedObject.FindProperty("codename");
         var gameRules = serializedObject.FindProperty("gameRules");
         var controls = serializedObject.FindProperty("controls");
         var image = serializedObject.FindProperty("image");
@@ -19,6 +20,11 @@ public class TutorialEditor : Editor {
             GUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField("Minigame's name: ", EditorStyles.boldLabel);
                 minigameName.stringValue = EditorGUILayout.TextField(minigameName.stringValue);
+            GUILayout.EndHorizontal();
+            GUILayout.Space(10);
+            GUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("Codename: ", EditorStyles.boldLabel);
+                codename.stringValue = EditorGUILayout.TextField(codename.stringValue);
             GUILayout.EndHorizontal();
             GUILayout.Space(10);
             GUILayout.BeginHorizontal();

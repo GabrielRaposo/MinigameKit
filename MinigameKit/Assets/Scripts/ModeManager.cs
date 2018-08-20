@@ -6,26 +6,29 @@ using UnityEngine.SceneManagement;
 public class ModeManager {
     public enum GameState
     {
-        SinglePlay,
+        FreePlay,
         Medley
     }
     static public GameState State;
 
     static public IEnumerator TransitionToMenu()
     {
-        AsyncOperation sceneLoad;
+        string menuScreenCodename;
         switch (State)
         {
             default:
-            case GameState.SinglePlay:
-                sceneLoad = SceneManager.LoadSceneAsync(ScenesIndexList.MinigameHub());
+            case GameState.FreePlay:
+                menuScreenCodename = MenuIndexList.MinigameHub();
                 break;
 
             case GameState.Medley:
-                sceneLoad = SceneManager.LoadSceneAsync(ScenesIndexList.MedleyScreen());
+                menuScreenCodename = MenuIndexList.MedleyScreen();
                 break;
         }
+        MenuController.FirstScreen = menuScreenCodename;
 
+        AsyncOperation sceneLoad;
+        sceneLoad = SceneManager.LoadSceneAsync(0);
         sceneLoad.allowSceneActivation = false;
         while (sceneLoad.progress < .9f)
         {
