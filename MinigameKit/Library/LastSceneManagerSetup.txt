@@ -1,7 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/MainScene.unity
+- path: Assets/Minigames/Bailarinas/Bailarinas.unity
   isLoaded: 1
   isActive: 1
-- path: Assets/Scenes/Old/ControllerSetup.unity
-  isLoaded: 0
-  isActive: 0
