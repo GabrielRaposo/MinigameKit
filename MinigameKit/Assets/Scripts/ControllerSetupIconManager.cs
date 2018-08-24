@@ -74,16 +74,17 @@ public class ControllerSetupIconManager : MonoBehaviour {
         StartCoroutine(FocusIcon(keyboardTransform, joystickTransform));
         keyboardFill.enabled = true;
 
+        float customMiddle = .505f;
         if (value[1] == '1') {
             keyboardFill.fillOrigin = 0;
             keyboardOutline.fillOrigin = 1;
-            keyboardFill.fillAmount = .5f;
-            keyboardOutline.fillAmount = .5f;
+            keyboardFill.fillAmount = customMiddle;
+            keyboardOutline.fillAmount = 1 - customMiddle;
         } else {
             keyboardFill.fillOrigin = 1;
             keyboardOutline.fillOrigin = 0;
-            keyboardFill.fillAmount = .5f;
-            keyboardOutline.fillAmount = .5f;
+            keyboardFill.fillAmount = 1 - customMiddle;
+            keyboardOutline.fillAmount = customMiddle;
         }
 
         joystickOutline.enabled = false;
