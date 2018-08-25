@@ -31,7 +31,7 @@ public class MinigameTutorial : MonoBehaviour {
 	}
     
     public void ToControls() {
-        minigameDesc.text = tutorialObject.controls;
+        //minigameDesc.text = tutorialObject.controls;
         toControls.SetActive(false);
         toRules.SetActive(true);
         state = !state;

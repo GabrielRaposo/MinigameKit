@@ -17,8 +17,12 @@ public class GameButton : ButtonManager
 		menuController.EnableOverlay("tutorial");
         if (tutorialInfo)
         {
-            tutorial.Tutorial(
-                tutorialInfo.codename, tutorialInfo.minigameName, tutorialInfo.gameRules, tutorialInfo.image
+            tutorial.GetInfo (
+                tutorialInfo.codename, 
+                tutorialInfo.minigameName, 
+                tutorialInfo.gameRules, 
+                tutorialInfo.controls,
+                tutorialInfo.image
             );
         }
         aSource.PlayOneShot(pressSound);

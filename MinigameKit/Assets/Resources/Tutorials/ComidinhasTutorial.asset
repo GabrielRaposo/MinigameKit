@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -14,5 +14,11 @@ MonoBehaviour:
   minigameName: Comidinhas
   codename: Comidinhas
   gameRules: Sei la num tem jogo ainda
-  controls: JOGA
+  controls:
+  - inputKey: 2
+    inputType: 2
+    text: Mover
+  - inputKey: 1
+    inputType: 1
+    text: Pular
   image: {fileID: 2800000, guid: 0afbb4c0aa8cdd643ab7c0f423086572, type: 3}

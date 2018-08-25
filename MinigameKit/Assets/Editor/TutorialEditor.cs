@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(TutorialObject))]
+//[CustomEditor(typeof(TutorialObject))]
 public class TutorialEditor : Editor {
     public override void OnInspectorGUI() {
         serializedObject.Update();
