@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//comentario fofo :3
 namespace Bailarinas
 {
 
@@ -20,9 +20,10 @@ namespace Bailarinas
                 
         void Update()
         {
+            
             if (Input.GetButtonDown(playerButtons.action))
             {
-                rb.AddForce(new Vector3(0, 0, 300.0f));
+                rb.AddForce(new Vector3(300.0f, 0, 0));
             }
 
             if (Input.GetAxisRaw(playerButtons.vertical) >= 0.5f)
@@ -31,6 +32,17 @@ namespace Bailarinas
             }
 
         }
+
+        private void FixedUpdate()
+        {            
+            Unbalance();
+        }
+
+        void Unbalance()
+        {
+
+        }
+
     }
 
 }

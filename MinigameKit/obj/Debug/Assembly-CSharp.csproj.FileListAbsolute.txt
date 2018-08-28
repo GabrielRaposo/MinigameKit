@@ -169,5 +169,3 @@ C:\Users\GDP - Gestão\Documents\GitHub\MinigameKit\MinigameKit\obj\Debug\Assemb
 C:\Users\GDP - Gestão\Documents\GitHub\MinigameKit\MinigameKit\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 C:\Users\GDP - Gestão\Documents\GitHub\MinigameKit\MinigameKit\obj\Debug\Assembly-CSharp.dll
 C:\Users\GDP - Gestão\Documents\GitHub\MinigameKit\MinigameKit\obj\Debug\Assembly-CSharp.pdb
-C:\Users\GDP - Gestão\Documents\GitHub\MinigameKit\MinigameKit\Temp\bin\Debug\UnityEditor.UI.dll
-C:\Users\GDP - Gestão\Documents\GitHub\MinigameKit\MinigameKit\Temp\bin\Debug\UnityEditor.UI.xml
