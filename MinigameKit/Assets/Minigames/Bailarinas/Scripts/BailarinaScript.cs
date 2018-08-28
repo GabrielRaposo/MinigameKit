@@ -10,6 +10,8 @@ namespace Bailarinas
 
         private bool lockedMovement;
 
+        public Transform pivot;
+        public float fixedAxis;
         public float impulse;
         public float speed;
         private Rigidbody rb;
@@ -19,22 +21,15 @@ namespace Bailarinas
         {
             base.Start();
             rb = GetComponent<Rigidbody>();
+            Unbalance(2.0f, 1);
+
+            fixedAxis = transform.position.x;
             
         }
                 
         void Update()
         {
-            
-            if (Input.GetButtonDown(playerButtons.action))
-            {
-                rb.AddForce(new Vector3(300.0f, 0, 0));
-            }
-
-            if (Input.GetAxisRaw(playerButtons.vertical) >= 0.5f)
-            {
-                rb.AddForce(new Vector3(0, 0, 3.0f));
-            }
-
+                        
             speed = rb.velocity.z;
 
         }
@@ -43,6 +38,19 @@ namespace Bailarinas
         {
             Move();            
             Rebalance();
+
+
+            float angle = transform.rotation.eulerAngles.z;
+            if(angle > 180)
+            {
+                angle -= 360;
+            }
+
+            if (Mathf.Abs(angle) > 50.0f)
+            {
+                Debug.Log("DEAD");
+                rb.constraints = RigidbodyConstraints.None;
+            }
         }
 
         void Move()
@@ -62,14 +70,14 @@ namespace Bailarinas
 
         void Step()
         {
-            rb.AddForce(Vector3.forward * impulse);
+            rb.AddForce(Vector3.forward * impulse, ForceMode.Acceleration);
             Unbalance();
             lockedMovement = true;
         }
 
         void Unbalance()
         {
-            float force = Random.Range(0.6f, 1.6f);
+            float force = Random.Range(0.85f, 2.5f);
             int direction;
 
             if(transform.rotation.z >= 0)
@@ -82,6 +90,13 @@ namespace Bailarinas
             }
 
             rb.AddTorque(Vector3.forward * direction * force * speed, ForceMode.Acceleration);
+        }
+
+        void Unbalance(float force, int direction)
+        {
+
+            rb.AddTorque(Vector3.forward * direction * force, ForceMode.Acceleration);
+
         }
 
         void Rebalance()
