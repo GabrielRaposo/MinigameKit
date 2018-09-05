@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//comentario fofo :3
+
 namespace Bailarinas
 {
 
@@ -11,20 +11,15 @@ namespace Bailarinas
         private bool lockedMovement;
 
         public Transform pivot;
-        public float fixedAxis;
         public float impulse;
         public float speed;
         private Rigidbody rb;
 
-        // Use this for initialization
         override public void Start()
         {
             base.Start();
             rb = GetComponent<Rigidbody>();
-            Unbalance(2.0f, 1);
-
-            fixedAxis = transform.position.x;
-            
+            Unbalance(4.0f, 1);                     
         }
                 
         void Update()
