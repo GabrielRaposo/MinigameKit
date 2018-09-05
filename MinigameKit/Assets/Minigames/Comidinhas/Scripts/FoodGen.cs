@@ -11,9 +11,6 @@ namespace Comidinhas
         public float max_x;
         public float min_x;
 
-	    void Start () {
-		
-	    }
 
 	    void Update () {
             //if (GameController.startGame)

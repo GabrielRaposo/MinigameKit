@@ -1418,7 +1418,7 @@ GameObject:
   - component: {fileID: 1307060538}
   - component: {fileID: 1307060537}
   m_Layer: 0
-  m_Name: BackGround
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1918,8 +1918,8 @@ MonoBehaviour:
   - {fileID: 1588692746096604, guid: 2c1aac22cc73285429c38ef577fde70c, type: 2}
   - {fileID: 1588692746096604, guid: cf38d70ee6b412e489d88488ae2835b7, type: 2}
   generationTime: 0
-  max_x: 50
-  min_x: 50
+  max_x: 100
+  min_x: 100
 --- !u!4 &2123776627
 Transform:
   m_ObjectHideFlags: 0

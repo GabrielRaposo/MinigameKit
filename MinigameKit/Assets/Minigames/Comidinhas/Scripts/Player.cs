@@ -32,6 +32,14 @@ namespace Comidinhas
             }
         }
 
+        private void OnCollisionStay2D(Collision2D col)
+        {
+            if(col.gameObject.tag == "Player")
+            {
+                gameController.PlayerCollide(1);
+            }
+        }
+
         private void OnCollisionExit2D(Collision2D col)
         {
             if (col.gameObject.tag == "Player")
