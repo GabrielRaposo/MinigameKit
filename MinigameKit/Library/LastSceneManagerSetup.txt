@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/MainScene.unity
+- path: Assets/Minigames/Fevdo/Scenes/SampleScene.unity
   isLoaded: 1
   isActive: 1
