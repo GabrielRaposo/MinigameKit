@@ -11,6 +11,8 @@ namespace Comidinhas
         public GameController gameController;
         public int score;
 
+        float playerSpeed = 100f;
+        Vector3 x;
 
 	    public override void Start() {
 
@@ -21,8 +23,20 @@ namespace Comidinhas
 	
 	    
 	    void Update () {
-		    
-	    }
+
+            if(GameController.startGame)
+                MovePlayer();
+
+        }
+
+
+        void MovePlayer()
+        {
+            x = new Vector3(Input.GetAxisRaw(playerButtons.horizontal), 0, 0);
+
+            transform.Translate(x * playerSpeed * Time.deltaTime);
+        }
+
 
         private void OnCollisionEnter2D(Collision2D col)
         {
