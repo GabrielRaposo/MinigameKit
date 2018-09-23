@@ -5,6 +5,7 @@ using UnityEngine;
 namespace GataclismaNaPista
 {
     public enum Direction { right, up, left, down };
+    public enum ScoreType { fail, wrongArrow, almost, good, great, perfect };
 
     public class Arrow : MonoBehaviour
     {

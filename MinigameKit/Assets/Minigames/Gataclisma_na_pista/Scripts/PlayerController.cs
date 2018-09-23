@@ -5,6 +5,13 @@ using UnityEngine.Events;
 
 namespace GataclismaNaPista
 {
+    [System.Serializable]
+    public class ScoreEvent : UnityEvent<ScoreType> { }
+
+    /*fail: pressionou fora do tempo
+      wrongArrow: pressionou tecla errada sobre a seta
+    */
+
     [RequireComponent(typeof(ArrowSequence))]
     public class PlayerController : MonoBehaviour
     {
@@ -27,7 +34,7 @@ namespace GataclismaNaPista
          * 
          * 
          * */
-        public UnityEvent onScoreChange;
+        public ScoreEvent onScoreChange;
 
         public float Score;// { get; private set; }
         private ArrowSequence sequence;
@@ -54,6 +61,7 @@ namespace GataclismaNaPista
             greatDistance = (boxSize / 2 + ArrowSequence.arrowSize / 2) / 4;
             goodDistance = (boxSize / 2 + ArrowSequence.arrowSize / 2) / 2;
             almostDistance = (boxSize / 2 + ArrowSequence.arrowSize / 2);
+            onScoreChange.AddListener(sequence.DestroyPeek);
             Debug.Log("Perfect = " + (this.transform.position.y + perfectDistance));
             Debug.Log("Great = " + (this.transform.position.y + greatDistance));
             Debug.Log("Good = " + (this.transform.position.y + goodDistance));
@@ -69,54 +77,72 @@ namespace GataclismaNaPista
         {
             if (Input.GetButtonDown(player.playerButtons.horizontal) || Input.GetButtonDown(player.playerButtons.vertical))
             {
+                float distance = Mathf.Abs(this.transform.position.y - sequence.ArrowQueue.Peek().transform.position.y);
+                ScoreType score;
                 if (Input.GetAxisRaw(player.playerButtons.horizontal) == 1 && sequence.peekArrowScript.direction == Direction.right ||
-                   Input.GetAxisRaw(player.playerButtons.vertical) == -1 && sequence.peekArrowScript.direction == Direction.down ||
-                   Input.GetAxisRaw(player.playerButtons.horizontal) == -1 && sequence.peekArrowScript.direction == Direction.left ||
-                   Input.GetAxisRaw(player.playerButtons.vertical) == 1 && sequence.peekArrowScript.direction == Direction.up)
-                    CalculateScore();
-                else { FailArrow(); Debug.Log("Wrong Arrow!"); }
-                onScoreChange.Invoke();
+                    Input.GetAxisRaw(player.playerButtons.vertical) == -1 && sequence.peekArrowScript.direction == Direction.down ||
+                    Input.GetAxisRaw(player.playerButtons.horizontal) == -1 && sequence.peekArrowScript.direction == Direction.left ||
+                    Input.GetAxisRaw(player.playerButtons.vertical) == 1 && sequence.peekArrowScript.direction == Direction.up)
+                {
+                    score = CalculateScore(distance);
+                }
+                    else { FailArrow(); Debug.Log("Wrong Arrow!"); score = ScoreType.wrongArrow; }
+                onScoreChange.Invoke(score);
             }
         }
 
-        private void CalculateScore()
+        private ScoreType CalculateScore(float distance)
         {
-            float distance = Mathf.Abs(this.transform.position.y - sequence.ArrowQueue.Peek().transform.position.y);
+            float points;
+            ScoreType score;
             if (distance < almostDistance)
             {
-                sequence.peekArrowScript.animator.Play("ArrowExplode");
                 if (distance < perfectDistance)
                 {
                     Debug.Log("perfect!");
-                    this.Score += 5;
+                    points = 5;
+                    score = ScoreType.perfect;
                 }
                 else if (distance < greatDistance)
                 {
                     Debug.Log("great!");
-                    this.Score += 3;
+                    points = 3;
+                    score = ScoreType.great;
                 }
                 else if (distance < goodDistance)
                 {
                     Debug.Log("good!");
-                    this.Score += 2;
+                    points = 2;
+                    score = ScoreType.good;
                 }
                 else
                 {
                     Debug.Log("almost!");
-                    this.Score += 1;
+                    points = 1;
+                    score = ScoreType.almost;
                 }
+                this.Score += points;
             }
             else
             {
-                FailArrow();
+                score = FailArrow();
             }
+            return score;
         }
 
-        private void FailArrow()
+        private ScoreType FailArrow()
         {
             Debug.Log("fail!");
-            this.Score -= 2;
-            if (this.Score < 1) this.Score = 1;
+            float points = -2;
+            if (this.Score + points < 1)
+            {
+                this.Score = 1;
+            }
+            else
+            {
+                this.Score += points;
+            }
+            return ScoreType.fail;
         }
 
         //define propriedades da variável "player"
