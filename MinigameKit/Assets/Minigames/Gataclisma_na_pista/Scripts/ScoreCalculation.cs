@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 namespace GataclismaNaPista
 {
     public class ScoreCalculation : MonoBehaviour {
-
-
+        
         /*TODO: update do score com evento OnScoreChange()*/
 
         private Slider slider;
@@ -21,7 +21,7 @@ namespace GataclismaNaPista
             players = GameObject.FindObjectsOfType<PlayerController>();
         }
 
-        void Update()
+        public void UpdateScorebar()
         {
             scoreLeft = players[0].Score;
             scoreRight = players[1].Score;

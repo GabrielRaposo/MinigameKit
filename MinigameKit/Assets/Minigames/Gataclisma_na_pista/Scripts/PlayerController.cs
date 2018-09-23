@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace GataclismaNaPista
 {
@@ -26,6 +27,8 @@ namespace GataclismaNaPista
          * 
          * 
          * */
+        public UnityEvent onScoreChange;
+
         public float Score;// { get; private set; }
         private ArrowSequence sequence;
         private float boxSize;
@@ -72,6 +75,7 @@ namespace GataclismaNaPista
                    Input.GetAxisRaw(player.playerButtons.vertical) == 1 && sequence.peekArrowScript.direction == Direction.up)
                     CalculateScore();
                 else { FailArrow(); Debug.Log("Wrong Arrow!"); }
+                onScoreChange.Invoke();
             }
         }
 

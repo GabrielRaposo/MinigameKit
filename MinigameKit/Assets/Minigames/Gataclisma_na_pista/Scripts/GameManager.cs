@@ -20,10 +20,6 @@ namespace GataclismaNaPista
             StartCoroutine(spawnAllArrows());
         }
 
-        void Update()
-        {
-        }
-
         IEnumerator spawnAllArrows()
         {
             while (true)
