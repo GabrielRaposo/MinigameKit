@@ -120,6 +120,8 @@ public class TutorialScreen : MonoBehaviour
 
         displayRules.text = rulesText;
         CreateInputLines(controls);
+
+        gameObject.SetActive(true);
     }
 
     void CreateInputLines(TutorialObject.InputTab[] controls)

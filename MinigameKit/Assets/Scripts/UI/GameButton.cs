@@ -6,15 +6,13 @@ using UnityEngine.SceneManagement;
 public class GameButton : ButtonManager
 {
 	[Header("Game Parameters")]
-    [SerializeField] TutorialObject tutorialInfo;
+    public TutorialObject tutorialInfo;
 
 	[Header("Tutorial Screen Reference")]
 	[SerializeField] TutorialScreen tutorial;
-	[SerializeField] MenuController menuController;
 
 	public override void Press()
 	{
-		menuController.EnableOverlay("tutorial");
         if (tutorialInfo)
         {
             tutorial.GetInfo (
@@ -24,7 +22,7 @@ public class GameButton : ButtonManager
                 tutorialInfo.controls,
                 tutorialInfo.image
             );
-        }
+        } 
         aSource.PlayOneShot(pressSound);
 	}
 }

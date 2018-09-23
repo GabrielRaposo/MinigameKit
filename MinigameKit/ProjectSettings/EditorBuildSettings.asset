@@ -9,33 +9,21 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/MedleyScene.unity
+    guid: fb11a671c71eac6489c2294078556c30
+  - enabled: 1
     path: Assets/Minigames/Samurais/Samurais.unity
     guid: 4e523b56a2be27349ae823ab53316e6e
   - enabled: 1
     path: Assets/Minigames/Comidinhas/Comidinhas.unity
     guid: 7bfc61a70d00a874796f0607f5729c45
   - enabled: 1
-    path: Assets/Scenes/TitleScreen.unity
-    guid: 9c6a90ff6362e6c4f96df88b7422b6b3
-  - enabled: 1
-    path: Assets/Scenes/ControllerSetup.unity
+    path: Assets/Scenes/Old/ControllerSetup.unity
     guid: 0475c1a05358b9546a6a1f1905b83cd2
   - enabled: 1
-    path: Assets/Scenes/ModeSelect.unity
+    path: Assets/Scenes/Old/ModeSelect.unity
     guid: 1abeb859e9f847c4e942ea0800b5b46b
-  - enabled: 0
-    path: Assets/Scenes/MedleySettings.unity
-    guid: 5b452b54f22d0e84889b5a4dcbb6d1c9
-  - enabled: 0
-    path: Assets/Scenes/MedleyRoulette.unity
-    guid: 17f4a8fbf2509bd45a10548453eb6ccb
-  - enabled: 0
-    path: Assets/Scenes/MinigameHub.unity
-    guid: e21f3bafb6f4fac41846b85d3a3a6116
   - enabled: 1
-    path: Assets/Scenes/MinigameTutorial.unity
+    path: Assets/Scenes/Old/MinigameTutorial.unity
     guid: e25eb898c1ab77440a4ba10bf7b86c1e
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   m_configObjects: {}

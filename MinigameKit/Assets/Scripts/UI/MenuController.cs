@@ -37,8 +37,9 @@ public class MenuController : MonoBehaviour
 	
 	[SerializeField] private Overlay controllerOverlay;
 	[SerializeField] private Overlay confirmOverlay;
-	[SerializeField] private Overlay medleyOverlay;
-	[SerializeField] private Overlay tutorialOverlay;
+	[SerializeField] private Overlay medleySettingOverlay;
+    [SerializeField] private Overlay medleyGameOverlay;
+    [SerializeField] private Overlay tutorialOverlay;
 	
 	private bool hasActiveOverlay = false;
 
@@ -49,6 +50,7 @@ public class MenuController : MonoBehaviour
 	{
         //FirstScreen = "freeplay";
         SwitchMenu(FirstScreen);
+        ModeManager.State = ModeManager.GameState.FreePlay;
     }
 	
 	void Update ()
@@ -92,13 +94,6 @@ public class MenuController : MonoBehaviour
                     hasSetupControllers = true;
                 }
                 break;
-			case "medley":
-				currentMenu.menuTransform.gameObject.SetActive(false);
-				currentMenu = medleyMenu;
-				currentMenu.menuTransform.gameObject.SetActive(true);
-				eventSystem.SetSelectedGameObject(currentMenu.firstButton);
-                ModeManager.State = ModeManager.GameState.Medley;
-				break;
 			case "freeplay":
 				currentMenu.menuTransform.gameObject.SetActive(false);
 				currentMenu = freeplayMenu;
@@ -114,37 +109,25 @@ public class MenuController : MonoBehaviour
 		switch (overlay)
 		{
 			case "controller":
-				hasActiveOverlay = true;
 				currentOverlay = controllerOverlay;
-				currentOverlay.overlayTransform.gameObject.SetActive(true);
-				lastSelectedObject = eventSystem.currentSelectedGameObject;
-				eventSystem.SetSelectedGameObject(currentOverlay.firstButton);
 				break;
 
 			case "confirm":
-				hasActiveOverlay = true;
 				currentOverlay = confirmOverlay;
-				currentOverlay.overlayTransform.gameObject.SetActive(true);
-				lastSelectedObject = eventSystem.currentSelectedGameObject;
-				eventSystem.SetSelectedGameObject(currentOverlay.firstButton);
 				break;
 
-			case "medley":
-				hasActiveOverlay = true;
-				currentOverlay = medleyOverlay;
-				currentOverlay.overlayTransform.gameObject.SetActive(true);
-				lastSelectedObject = eventSystem.currentSelectedGameObject;
-				eventSystem.SetSelectedGameObject(currentOverlay.firstButton);
-				break;
-
-			case "tutorial":
-				hasActiveOverlay = true;
+            case "tutorial":
 				currentOverlay = tutorialOverlay;
-				currentOverlay.overlayTransform.gameObject.SetActive(true);
-				lastSelectedObject = eventSystem.currentSelectedGameObject;
-				eventSystem.SetSelectedGameObject(currentOverlay.firstButton);
 				break;
+
+            default:
+                Debug.Log("Titulo de overlay incorreto.");
+                return;
 		}
+		hasActiveOverlay = true;
+		currentOverlay.overlayTransform.gameObject.SetActive(true);
+		lastSelectedObject = eventSystem.currentSelectedGameObject;
+		eventSystem.SetSelectedGameObject(currentOverlay.firstButton);
 	}
 
 	public void DisableOverlay()
@@ -153,4 +136,19 @@ public class MenuController : MonoBehaviour
 		eventSystem.SetSelectedGameObject(lastSelectedObject);
 		currentOverlay.overlayTransform.gameObject.SetActive(false);
 	}
+
+    public void CallScene(string scene)
+    {
+        switch (scene)
+        {
+            case "medley":
+                ModeManager.State = ModeManager.GameState.Medley;
+                StartCoroutine(ModeManager.TransitionToMenu());
+                break;
+
+            default:
+                Debug.Log("Titulo de overlay incorreto.");
+                return;
+        }
+    }
 }

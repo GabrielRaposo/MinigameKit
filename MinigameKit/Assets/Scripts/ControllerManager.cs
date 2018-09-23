@@ -33,7 +33,10 @@ public class ControllerManager : MonoBehaviour {
         } else {
             Destroy(gameObject);
         }
-	}
+
+        leftButtons = new PlayerButtons(leftController = "K1");
+        rightButtons = new PlayerButtons(rightController = "K2");
+    }
 
     /// <summary>
     /// Caso alguem aperte o botao de Action, retorna o nome daquele controle.

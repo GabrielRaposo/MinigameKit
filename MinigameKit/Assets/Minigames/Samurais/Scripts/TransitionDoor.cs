@@ -38,7 +38,7 @@ namespace Samurais
         IEnumerator OpenDoors()
         {
             float targetLeft  = leftDoor.anchoredPosition.x  - deltaPosition;
-            float targetRight = rightDoor.anchoredPosition.x + deltaPosition;
+            //float targetRight = rightDoor.anchoredPosition.x + deltaPosition;
 
             while (leftDoor.anchoredPosition.x > targetLeft)
             {

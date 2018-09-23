@@ -13,22 +13,21 @@ public class ModeManager {
 
     static public IEnumerator TransitionToMenu()
     {
-        string menuScreenCodename;
+        int sceneIndex;
         switch (State)
         {
             default:
             case GameState.FreePlay:
-                menuScreenCodename = MenuIndexList.MinigameHub();
+                MenuController.FirstScreen = "freeplay";
+                sceneIndex = 0;
                 break;
 
             case GameState.Medley:
-                menuScreenCodename = MenuIndexList.MedleyScreen();
+                sceneIndex = 1;
                 break;
         }
-        MenuController.FirstScreen = menuScreenCodename;
 
-        AsyncOperation sceneLoad;
-        sceneLoad = SceneManager.LoadSceneAsync(0);
+        AsyncOperation sceneLoad = SceneManager.LoadSceneAsync(sceneIndex);
         sceneLoad.allowSceneActivation = false;
         while (sceneLoad.progress < .9f)
         {

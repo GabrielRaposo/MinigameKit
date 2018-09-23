@@ -19,10 +19,6 @@ namespace Samurais {
         public int minTimer;
         public int maxTimer;
 
-        string 
-            leftAction = "z",
-            rightAction = "x";
-
         AudioSource bgm; 
 
         enum GameState {Intro, Wait, Ready, Outro, End}
@@ -62,6 +58,9 @@ namespace Samurais {
                 default:
                     break;
             }
+
+            if (Input.GetKeyDown(KeyCode.O)) StartCoroutine(EndMinigame(true));
+            if (Input.GetKeyDown(KeyCode.P)) StartCoroutine(EndMinigame(false));
         }
 
         void OffTimingAttack(bool leftAction)
@@ -175,7 +174,7 @@ namespace Samurais {
                 PlayersManager.result = PlayersManager.Result.RightWin;
             }
 
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(1);
 
             StartCoroutine(ModeManager.TransitionToMenu());
         }
