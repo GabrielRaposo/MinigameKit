@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 713, y: 492}
   m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
-  controlID: 1501
+  controlID: 10752
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -44,8 +44,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 353.6
-    y: 92.8
+    x: 2
+    y: 19
     width: 692
     height: 398
   m_PersistentViewDataDictionary: {fileID: 0}
@@ -69,9 +69,9 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
     m_HSlider: 0
-    m_VSlider: 1
+    m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_MinSize: {x: 436, y: 492}
   m_MaxSize: {x: 14006, y: 14042}
   vertical: 0
-  controlID: 1502
+  controlID: 10753
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -179,9 +179,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 8e4d0000
-    m_LastClickedID: 19854
-    m_ExpandedIDs: 7ae7fffff2faffff00000000a04d0000b64d0000be4d0000e44d0000
+    m_SelectedIDs: 961dfcff
+    m_LastClickedID: -254570
+    m_ExpandedIDs: e6fbffff00000000702f00008e2f0000ae2f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -200,7 +200,7 @@ MonoBehaviour:
       m_ClientGUIView: {fileID: 4}
     m_SearchString: 
   m_ExpandedScenes:
-  - MainScene
+  - SampleScene
   m_CurrenRootInstanceID: 0
   m_LockTracker:
     m_IsLocked: 0
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_MinSize: {x: 234, y: 492}
   m_MaxSize: {x: 10004, y: 14042}
   vertical: 1
-  controlID: 1503
+  controlID: 10704
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -276,20 +276,20 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 313
-    y: 92
-    width: 576
-    height: 343
+    x: 353.6
+    y: 92.8
+    width: 692
+    height: 398
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 2069.183585628337
+  lastFramingTime: 50335.443916763965
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 228.69052, y: 119.54944, z: -0.2916245}
+    m_Target: {x: -0.43210194, y: 0.065816045, z: 35.139587}
     speed: 2
-    m_Value: {x: 228.69052, y: 119.54944, z: -0.2916245}
+    m_Value: {x: -0.43210194, y: 0.065816045, z: 35.139587}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -321,9 +321,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 290.35437
+    m_Target: 2.6760483
     speed: 2
-    m_Value: 290.35437
+    m_Value: 2.6760483
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -423,20 +423,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Minigames/Gataclisma_na_pista/Scripts
+    - Assets/Minigames/Gataclisma_na_pista/Audio
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Minigames/Gataclisma_na_pista/Scripts
+  - Assets/Minigames/Gataclisma_na_pista/Audio
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Eduardo Melo\Documents\GitHub\Gataclisma na Pista\MinigameKit\MinigameKit
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 158}
-    m_SelectedIDs: 2c2b0000
-    m_LastClickedID: 11052
-    m_ExpandedIDs: 000000000e2b0000402b0000542b0000c02b0000162c0000642d0000202e0000202f00002a2f0000883e000000ca9a3b
+    scrollPos: {x: 0, y: 134}
+    m_SelectedIDs: 42400000
+    m_LastClickedID: 16450
+    m_ExpandedIDs: 00000000742a0000a82a0000bc2a0000282b00007e2b0000ce2c0000882d00008a2e0000942e0000f02f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -464,7 +464,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000000e2b0000402b0000542b0000c02b0000162c0000642d0000202e0000202f00002a2f0000883e000000ca9a3b
+    m_ExpandedIDs: 00000000742a0000a82a0000bc2a0000282b00007e2b0000ce2c0000882d00008a2e0000942e0000f02f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -489,8 +489,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 8e4d0000
-    m_LastClickedInstanceID: 19854
+    m_SelectedInstanceIDs: 961dfcff
+    m_LastClickedInstanceID: -254570
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:

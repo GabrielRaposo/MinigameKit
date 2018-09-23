@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 namespace GataclismaNaPista
 {
     public class GameManager : MonoBehaviour
     {
-
         public int BPM;
         ArrowSequence[] allArrowSequences;
+        public Text text;
 
         private void Awake()
         {
@@ -17,10 +19,23 @@ namespace GataclismaNaPista
 
         private void Start()
         {
-            StartCoroutine(spawnAllArrows());
+            StartCoroutine(CountDown());
         }
 
-        IEnumerator spawnAllArrows()
+        IEnumerator CountDown()
+        {
+            for(int i = 3; i > 0; i--)
+            {
+                text.text = i.ToString();
+                yield return new WaitForSeconds(1);
+            }
+            text.text = "GO!";
+            text.GetComponent<RectTransform>().DOMoveY(0.5f, 0.5f);
+            text.DOColor(new Color(1, 1, 1, 0), 0.5f);
+            StartCoroutine(SpawnAllArrows());
+        }
+
+        IEnumerator SpawnAllArrows()
         {
             while (true)
             {
