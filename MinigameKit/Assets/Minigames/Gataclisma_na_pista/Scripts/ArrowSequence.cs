@@ -64,18 +64,6 @@ namespace GataclismaNaPista
             ArrowQueue.Peek().GetComponent<SpriteRenderer>().color = Color.cyan;
         }
 
-        public void DestroyPeek(ScoreType score)
-        {
-            if (score != ScoreType.wrongArrow && score != ScoreType.fail)
-            {
-                peekArrowScript.animator.Play("ArrowExplode");
-                Destroy(ArrowQueue.Peek(), 1f);
-                ArrowQueue.Dequeue();
-                peekArrowScript = ArrowQueue.Peek().GetComponent<Arrow>();
-                ArrowQueue.Peek().GetComponent<SpriteRenderer>().color = Color.cyan;
-            }
-        }
-
         private void CheckDeadZone()
         {
             if (ArrowQueue.Count > 0 && ArrowQueue.Peek().transform.position.y < unqueueZone)
