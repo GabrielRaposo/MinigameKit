@@ -61,6 +61,7 @@ public class MedleyManager : MonoBehaviour {
             playerScores.Add(0);
         }
 
+        PlayersManager.playerColor = playerColors;
         SetPlayers();
     }
 	
@@ -80,6 +81,7 @@ public class MedleyManager : MonoBehaviour {
             }
             players.Add(icon);
         }
+
 
         playerPrefab.SetActive(false);
         playing = true;

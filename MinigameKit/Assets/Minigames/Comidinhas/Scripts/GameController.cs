@@ -97,7 +97,7 @@ namespace Comidinhas
         {
             yield return new WaitForSeconds(1);
 
-            StartCoroutine(ModeManager.TransitionToMenu());
+            StartCoroutine(ModeManager.TransitionFromMinigame());
         } 
     }
 }

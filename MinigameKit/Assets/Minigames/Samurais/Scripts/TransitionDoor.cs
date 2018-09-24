@@ -61,8 +61,8 @@ namespace Samurais
 
             while (leftDoor.anchoredPosition.x < targetLeft)
             {
-                leftDoor.anchoredPosition  -= Vector2.left  * speed;
-                rightDoor.anchoredPosition -= Vector2.right * speed;
+                leftDoor.anchoredPosition  -= Vector2.left  * speed * 3;
+                rightDoor.anchoredPosition -= Vector2.right * speed * 3;
                 yield return new WaitForEndOfFrame();
             }
 

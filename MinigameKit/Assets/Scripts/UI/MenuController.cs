@@ -143,7 +143,7 @@ public class MenuController : MonoBehaviour
         {
             case "medley":
                 ModeManager.State = ModeManager.GameState.Medley;
-                StartCoroutine(ModeManager.TransitionToMenu());
+                StartCoroutine(ModeManager.TransitionFromMinigame());
                 break;
 
             default:

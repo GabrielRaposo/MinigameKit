@@ -94,7 +94,7 @@ public class MedleyRandomizer : MonoBehaviour {
 
     private IEnumerator ShuffleAnimation()
     {
-        SetUIMatchup(currentMatchup = matchupStack.Pop());
+        SetCurrentMatchup(currentMatchup = matchupStack.Pop());
 
         yield return new WaitForSeconds(1f);
 
@@ -102,11 +102,13 @@ public class MedleyRandomizer : MonoBehaviour {
         //medleyManager.CallNextDisplay();
     }
 
-    private void SetUIMatchup(Matchup matchup)
+    private void SetCurrentMatchup(Matchup matchup)
     {
+        PlayersManager.currentLeftPlayer = matchup.leftPlayer;
         currentLeftPlayer = medleyManager.GetPlayerAt(matchup.leftPlayer);
         leftPlayerIcon.Init(currentLeftPlayer.title, currentLeftPlayer.score, currentLeftPlayer.color);
 
+        PlayersManager.currentRightPlayer = matchup.rightPlayer;
         currentRightPlayer = medleyManager.GetPlayerAt(matchup.rightPlayer);
         rightPlayerIcon.Init(currentRightPlayer.title, currentRightPlayer.score, currentRightPlayer.color);
 

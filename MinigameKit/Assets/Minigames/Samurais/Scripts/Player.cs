@@ -14,13 +14,19 @@ namespace Samurais
         public GameObject timingWarning;
         [HideInInspector] public bool locked;
 
+        public Color baseColor;
+
 	    public override void Start ()
         {
             base.Start();
             _animator = GetComponent<Animator>();
             originalPosition = transform.position;
 
-            GetComponent<SpriteRenderer>().color = base.color;
+            SpriteColorReplacement scr = GetComponent<SpriteColorReplacement>();
+            scr.replacedColors = new List<SpriteColorReplacement.ReplacedColor>();
+            scr.replacedColors.Add(new SpriteColorReplacement.ReplacedColor(baseColor, base.color));
+            scr.Apply();
+            //GetComponent<SpriteRenderer>().color = base.color;
         }
 
         public void Attack()

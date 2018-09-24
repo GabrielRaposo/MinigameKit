@@ -81,7 +81,7 @@ public class MedleyController : MonoBehaviour
             default:
                 return;
         }
-        eventSystem.SetSelectedGameObject(currentMenu.firstButton);
+        eventSystem.SetSelectedGameObject(null);
         currentMenu.menuTransform.gameObject.SetActive(true);
         eventSystem.SetSelectedGameObject(currentMenu.firstButton);
     }
@@ -125,9 +125,9 @@ public class MedleyController : MonoBehaviour
         {
             case "main menu":
                 FirstScreen = "title";
-                ModeManager.State = ModeManager.GameState.FreePlay;
+                ModeManager.State = ModeManager.GameState.Menu;
                 MenuController.FirstScreen = "main";
-                StartCoroutine(ModeManager.TransitionToMenu());
+                StartCoroutine(ModeManager.TransitionFromMinigame());
                 break;
 
             default:

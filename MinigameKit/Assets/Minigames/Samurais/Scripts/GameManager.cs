@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using DG.Tweening;
 
 namespace Samurais {
     public class GameManager : MonoBehaviour {
@@ -11,7 +12,8 @@ namespace Samurais {
         [Header("References")]
         public Player leftSamurai;
         public Player rightSamurai;
-        public TextMeshProUGUI roundText;
+        public TextMeshProUGUI actionDisplay;
+        public TextMeshProUGUI roundDisplay;
         public TransitionDoor transitionDoor;
         public GameObject sliceEffect;
 
@@ -19,7 +21,9 @@ namespace Samurais {
         public int minTimer;
         public int maxTimer;
 
-        AudioSource bgm; 
+        AudioSource bgm;
+        int roundIndex;
+        Coroutine timeOutCoroutine;
 
         enum GameState {Intro, Wait, Ready, Outro, End}
         GameState gameState;
@@ -47,10 +51,10 @@ namespace Samurais {
 
                 case GameState.Ready:
                     if (Input.GetButtonDown(leftSamurai.playerButtons.action)  && !leftSamurai.locked) {
-                        DuelResults(true);
+                        DuelResults(1);
                     } else 
                     if (Input.GetButtonDown(rightSamurai.playerButtons.action) && !rightSamurai.locked) {
-                        DuelResults(false);
+                        DuelResults(2);
                     }
                     //Depois lidar com empates, por enquanto prioriza o da esquerda
                     break;
@@ -59,8 +63,9 @@ namespace Samurais {
                     break;
             }
 
-            if (Input.GetKeyDown(KeyCode.O)) StartCoroutine(EndMinigame(true));
-            if (Input.GetKeyDown(KeyCode.P)) StartCoroutine(EndMinigame(false));
+            if (Input.GetKeyDown(KeyCode.I)) StartCoroutine(EndMinigame(0));
+            if (Input.GetKeyDown(KeyCode.O)) StartCoroutine(EndMinigame(1));
+            if (Input.GetKeyDown(KeyCode.P)) StartCoroutine(EndMinigame(2));
         }
 
         void OffTimingAttack(bool leftAction)
@@ -71,38 +76,44 @@ namespace Samurais {
                 rightSamurai.Miss();
         }
 
-        void DuelResults(bool leftWins)
+        void DuelResults(int result)
         {
-            sliceEffect.SetActive(true);
+            StopCoroutine(timeOutCoroutine);
 
-            Player winner, loser;
-            if (leftWins)
-            {
-                winner = leftSamurai;
-                loser = rightSamurai;
-                sliceEffect.GetComponent<RectTransform>().rotation = Quaternion.Euler(Vector3.up * 0);
+            if (result == 1) {
+                sliceEffect.SetActive(true);
+                leftSamurai.Attack();
+                if (rightSamurai.health.value > 1)
+                    SetOutroState();
+                else
+                    SetEndState();
+                rightSamurai.Die();
+            } else
+            if (result == 2) {
+                sliceEffect.SetActive(true);
+                rightSamurai.Attack();
+                if (leftSamurai.health.value > 1)
+                    SetOutroState();
+                else
+                    SetEndState();
+                leftSamurai.Die();
             } else
             {
-                winner = rightSamurai;
-                loser = leftSamurai;
-                sliceEffect.GetComponent<RectTransform>().rotation = Quaternion.Euler(Vector3.up * 180);
+                if (leftSamurai.health.value < 2 || rightSamurai.health.value < 2) {
+                    SetEndState();
+                } else {
+                    SetOutroState();
+                }
+                leftSamurai.Die();
+                rightSamurai.Die();
             }
-
-            winner.Attack();
-
-            if (loser.health.value > 1) 
-                SetOutroState();
-            else 
-                SetEndState(leftWins);
-            
-            loser.Die();
         }
         #endregion
 
         #region State Set
         void SetIntroState()
         {
-            roundText.text = string.Empty;
+            actionDisplay.text = string.Empty;
             StartCoroutine(WaitForDoorToOpen());
             gameState = GameState.Intro;
         }
@@ -112,28 +123,37 @@ namespace Samurais {
             float time = Random.Range((float)minTimer, (float)maxTimer);
             bgm.Play();
             StartCoroutine(WaitingTimer(time));
-            roundText.text = "Espere";
+            actionDisplay.text = "Espere";
             gameState = GameState.Wait;
         }
 
         void SetReadyState()
         {
             bgm.Stop();
-            roundText.text = "ATAQUE!";
-            roundText.GetComponent<AudioSource>().Play();
+            actionDisplay.text = "ATAQUE!";
+            actionDisplay.GetComponent<AudioSource>().Play();
+            timeOutCoroutine = StartCoroutine(TimeOutTimer());
             gameState = GameState.Ready;
         }
 
         void SetOutroState()
         {
-            roundText.text = string.Empty;
-            StartCoroutine(waitForDoorToClose());
+            actionDisplay.text = string.Empty;
+            StartCoroutine(WaitForDoorToClose());
             gameState = GameState.Outro;
         }
 
-        void SetEndState(bool leftWins)
+        void SetEndState()
         {
-            StartCoroutine(EndMinigame(leftWins));
+
+            if (leftSamurai.health.value > rightSamurai.health.value) {
+                StartCoroutine(EndMinigame(1));
+            } else
+            if (rightSamurai.health.value > leftSamurai.health.value) {
+                StartCoroutine(EndMinigame(2));
+            } else {
+                StartCoroutine(EndMinigame(0));
+            }
             gameState = GameState.End;
         }
 
@@ -145,38 +165,68 @@ namespace Samurais {
 
         IEnumerator WaitForDoorToOpen()
         {
+            //change round display
+            yield return ShowRound();
+
             transitionDoor.ToggleState();
             yield return new WaitUntil(() => transitionDoor.isOpen);
             SetWaitState();
         }
 
-        IEnumerator waitForDoorToClose()
+        IEnumerator ShowRound()
         {
+            roundDisplay.enabled = false;
+            yield return new WaitForSeconds(.5f);
+
+            roundIndex++;
+            roundDisplay.transform.localScale = Vector3.one * 3;
+            roundDisplay.text = "Round " + roundIndex;
+            roundDisplay.enabled = true;
+            roundDisplay.transform.DOScale(1, .1f);
+            roundDisplay.GetComponent<AudioSource>().Play();
             yield return new WaitForSeconds(1);
+            roundDisplay.enabled = false;
+        }
+
+        IEnumerator WaitForDoorToClose()
+        {
+            yield return new WaitForSeconds(2.5f);
 
             transitionDoor.ToggleState();
             yield return new WaitUntil(() => !transitionDoor.isOpen);
 
             leftSamurai.Reset();
             rightSamurai.Reset();
+
             yield return new WaitForSeconds(1);
             SetIntroState();
         }
 
-        IEnumerator EndMinigame(bool leftWins)
+        IEnumerator EndMinigame(int results)
         {
-            if (leftWins) {
-                roundText.text = "Left wins!";
+            if (results == 1) {
+                actionDisplay.text = "Left wins!";
                 PlayersManager.result = PlayersManager.Result.LeftWin;
-            }
-            else {
-                roundText.text = "Right wins!";
+            } else
+            if (results == 2) {
+                actionDisplay.text = "Right wins!";
                 PlayersManager.result = PlayersManager.Result.RightWin;
+            } else
+            {
+                actionDisplay.text = "Draw!";
+                PlayersManager.result = PlayersManager.Result.Draw;
             }
 
             yield return new WaitForSeconds(1);
 
-            StartCoroutine(ModeManager.TransitionToMenu());
+            StartCoroutine(ModeManager.TransitionFromMinigame());
+        }
+
+        IEnumerator TimeOutTimer()
+        {
+            yield return new WaitForSeconds(4);
+            actionDisplay.text = "LENTOS DEMAIS!";
+            DuelResults(0);
         }
 
         #endregion

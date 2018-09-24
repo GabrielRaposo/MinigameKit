@@ -7,11 +7,12 @@ public class ModeManager {
     public enum GameState
     {
         FreePlay,
-        Medley
+        Medley,
+        Menu
     }
     static public GameState State;
 
-    static public IEnumerator TransitionToMenu()
+    static public IEnumerator TransitionFromMinigame()
     {
         int sceneIndex;
         switch (State)
@@ -24,6 +25,11 @@ public class ModeManager {
 
             case GameState.Medley:
                 sceneIndex = 1;
+                break;
+
+            case GameState.Menu:
+                MenuController.FirstScreen = "main";
+                sceneIndex = 0;
                 break;
         }
 

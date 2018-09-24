@@ -22,7 +22,6 @@ public class PlayerInfo : MonoBehaviour {
     public PlayerButtons playerButtons;
     protected Color color;
 
-
     public virtual void Start() {
         if (ControllerManager.instance != null) {
             if (side) {
