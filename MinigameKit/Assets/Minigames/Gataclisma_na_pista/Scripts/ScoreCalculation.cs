@@ -35,13 +35,22 @@ namespace GataclismaNaPista
             scoreRight = players[1].Score;
             slider.DOValue(slider.maxValue * scoreLeft / (scoreLeft + scoreRight), 0.2f);
 
-            if (players[0].Score > players[1].Score)
+            // CROWN
+            if(players[0].Score == players[1].Score)
             {
-                crown.transform.position = crownPosition;
+                crown.SetActive(false);
             }
-            else if (players[1].Score > players[0].Score)
+            else
             {
-                crown.transform.position = crownPosition * new Vector2(-1, 1);
+                crown.SetActive(true);
+                if (players[0].Score > players[1].Score)
+                {
+                    crown.transform.position = crownPosition;
+                }
+                else if (players[1].Score > players[0].Score)
+                {
+                    crown.transform.position = crownPosition * new Vector2(-1, 1);
+                }
             }
         }
     }
