@@ -10571,6 +10571,7 @@ MonoBehaviour:
   medleyController: {fileID: 438887451}
   minigameOptions:
   - {fileID: 11400000, guid: 19ab5d89f48b3904f90dc139d8327cd5, type: 2}
+  - {fileID: 11400000, guid: b615d921783ac5444a3b7570276358de, type: 2}
   confirmationPanel: {fileID: 435537172}
   leftPlayerIcon: {fileID: 1348703850}
   rightPlayerIcon: {fileID: 1513458142}
