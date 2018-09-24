@@ -18,6 +18,7 @@ namespace Comidinhas
 
         public Player leftFatty;
         public Player rightFatty;
+        public FoodGen foodGen;
 
         void Start () {
             timerText.text = null;
@@ -54,21 +55,26 @@ namespace Comidinhas
         {
             leftFatty.ToggleMovement(false);
             rightFatty.ToggleMovement(false);
+            foodGen.SetActivation(false);
 
             if (leftFatty.score > rightFatty.score) {
-                //Esquerda vence o jogo
                 Debug.Log("Esquerda é o vencedor!");
+                timerText.text = "Left wins!";
+                PlayersManager.result = PlayersManager.Result.LeftWin;
             } else
             if (leftFatty.score < rightFatty.score) {
-                //Direita vence o jogo
                 Debug.Log("Direita é o vencedor!");
+                timerText.text = "Right wins!";
+                PlayersManager.result = PlayersManager.Result.RightWin;
             } else
             {
-                //Empate
                 Debug.Log("Empate!");
+                timerText.text = "Draw...";
+                PlayersManager.result = PlayersManager.Result.Draw;
             }
-        }
 
+            StartCoroutine(EndGameAnimation());
+        }
 
         IEnumerator ReadyTimer()
         {
@@ -82,9 +88,17 @@ namespace Comidinhas
 
             leftFatty.ToggleMovement(true);
             rightFatty.ToggleMovement(true);
+            foodGen.SetActivation(true);
 
             StopCoroutine(ReadyTimer());
         }
+
+        IEnumerator EndGameAnimation()
+        {
+            yield return new WaitForSeconds(1);
+
+            StartCoroutine(ModeManager.TransitionToMenu());
+        } 
     }
 }
 

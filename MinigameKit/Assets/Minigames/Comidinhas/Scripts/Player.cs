@@ -67,23 +67,24 @@ namespace Comidinhas
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            if(state == PlayerState.Idle)
+            if (state != PlayerState.Idle || !allowMovement) return;
+            
+            if (col.gameObject.tag == "Comida")
             {
-                if (col.gameObject.tag == "Comida")
-                {
-                    Destroy(col.gameObject);
-                    animator.SetTrigger("Eat");
-                    score++;
-                    scoreboardText.text = score.ToString();
-                } else 
-                if (col.gameObject.tag == "Player") 
-                {
-                    //"Player" escolhido para tag do empurrão só para não criar tag nova no projeto
-                    StartCoroutine(LaunchToDirection(
-                            (transform.position.x < col.gameObject.transform.position.x) ? Vector3.left : Vector3.right
-                    ));
-                }
+                Food food = col.gameObject.GetComponent<Food>();
+                if (food) { food.Disable();}
+                animator.SetTrigger("Eat");
+                score++;
+                scoreboardText.text = score.ToString();
+            } else 
+            if (col.gameObject.tag == "Player") 
+            {
+                //"Player" escolhido para tag do empurrão só para não criar tag nova no projeto
+                StartCoroutine(LaunchToDirection(
+                        (transform.position.x < col.gameObject.transform.position.x) ? Vector3.left : Vector3.right
+                ));
             }
+            
         }
 
         public void ToggleMovement(bool value)
