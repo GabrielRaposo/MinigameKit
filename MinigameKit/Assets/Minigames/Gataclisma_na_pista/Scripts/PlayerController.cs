@@ -8,10 +8,6 @@ namespace GataclismaNaPista
     [System.Serializable]
     public class ScoreEvent : UnityEvent<ScoreType> { }
 
-    /*fail: pressionou fora do tempo
-      wrongArrow: pressionou tecla errada sobre a seta
-    */
-
     [RequireComponent(typeof(ArrowSequence))]
     public class PlayerController : MonoBehaviour
     {
@@ -28,15 +24,12 @@ namespace GataclismaNaPista
          *     |       Good         |
          *     |       Almost       |
          *      ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
-         *              
-         * arrow = arrowCenter
-         * cube = inputBoxCenter
-         * 
          * 
          * */
         public ScoreEvent onScoreChange;
 
-        public float Score;// { get; private set; }
+
+        public float Score { get; private set; }
         private ArrowSequence sequence;
         private float boxSize;
 
@@ -51,7 +44,7 @@ namespace GataclismaNaPista
         private void Awake()
         {
             player = transform.parent.GetComponent<PlayerInfo>();
-            sequence = transform.GetComponent<ArrowSequence>();
+            sequence = GetComponent<ArrowSequence>();
             boxSize = gameObject.GetComponent<SpriteRenderer>().bounds.size.y;
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using DG.Tweening;
 
 namespace GataclismaNaPista
 {
@@ -25,7 +26,7 @@ namespace GataclismaNaPista
         {
             scoreLeft = players[0].Score;
             scoreRight = players[1].Score;
-            slider.value = slider.maxValue * scoreLeft / (scoreLeft + scoreRight);
+            slider.DOValue(slider.maxValue * scoreLeft / (scoreLeft + scoreRight), 0.2f);
         }
     }
 }

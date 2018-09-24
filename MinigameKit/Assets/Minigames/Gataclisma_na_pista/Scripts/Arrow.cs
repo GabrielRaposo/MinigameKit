@@ -6,6 +6,9 @@ namespace GataclismaNaPista
 {
     public enum Direction { right, up, left, down };
     public enum ScoreType { fail, wrongArrow, almost, good, great, perfect };
+    /*fail: pressionou fora do tempo
+    wrongArrow: pressionou tecla errada sobre a seta
+    */
 
     public class Arrow : MonoBehaviour
     {

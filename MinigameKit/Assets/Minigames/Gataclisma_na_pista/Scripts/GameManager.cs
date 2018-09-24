@@ -9,8 +9,9 @@ namespace GataclismaNaPista
     public class GameManager : MonoBehaviour
     {
         public int BPM;
-        ArrowSequence[] allArrowSequences;
         public Text text;
+
+        private ArrowSequence[] allArrowSequences;
 
         private void Awake()
         {
@@ -37,8 +38,12 @@ namespace GataclismaNaPista
 
         IEnumerator SpawnAllArrows()
         {
+            float musicLength = GetComponent<AudioSource>().clip.length; //deveria ser o numero de beats da musica
+            int beats = 0;
             while (true)
             {
+                Debug.Log("Beats: " + beats);
+                beats++;
                 Direction direction = (Direction)Random.Range(0, 4);
                 //int duration = Random.Range(1, 3); //spawna setas de duracao entre 1 e 2
                 int duration = 1;
