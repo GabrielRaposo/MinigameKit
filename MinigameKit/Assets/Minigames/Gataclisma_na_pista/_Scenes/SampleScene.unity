@@ -432,10 +432,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 421456101}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02c63dbbab1ad684a84cae377de0b122, type: 3}
+  m_Script: {fileID: 11500000, guid: 6cc7e787db588034abb15720fa07e03a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   side: 0
+  scoreBar: {fileID: 97334220}
 --- !u!4 &421456103
 Transform:
   m_ObjectHideFlags: 0
@@ -443,7 +444,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 421456101}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 228.69052, y: 119.54944, z: -0}
+  m_LocalPosition: {x: 228.6905, y: 119.5494, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1015223858}
@@ -1466,10 +1467,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1908581426}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02c63dbbab1ad684a84cae377de0b122, type: 3}
+  m_Script: {fileID: 11500000, guid: 6cc7e787db588034abb15720fa07e03a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   side: 1
+  scoreBar: {fileID: 431157620}
 --- !u!4 &1908581428
 Transform:
   m_ObjectHideFlags: 0

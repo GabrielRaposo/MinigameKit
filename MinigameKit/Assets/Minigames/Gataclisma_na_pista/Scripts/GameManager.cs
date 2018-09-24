@@ -79,6 +79,7 @@ namespace GataclismaNaPista
             {
                 text.text = "EMPATE!";
             }
+            /*aqui deveria esperar um tempo e depois finalizar o jogo*/
             yield return null;
         }
     }

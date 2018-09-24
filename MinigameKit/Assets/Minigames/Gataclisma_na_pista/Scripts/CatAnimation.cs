@@ -11,11 +11,19 @@ namespace GataclismaNaPista
         private PlayerInfo player;
         private int BPM;
 
+        [System.NonSerialized]
+        public Color color;
+
         private void Awake()
         {
             animator = transform.GetComponent<Animator>();
             player = transform.parent.GetComponent<PlayerInfo>();
             BPM = GameObject.FindObjectOfType<GameManager>().BPM;
+        }
+
+        public void Start()
+        {
+            GetComponent<SpriteRenderer>().color = color;
         }
 
         public void playAnimation(ScoreType score)
