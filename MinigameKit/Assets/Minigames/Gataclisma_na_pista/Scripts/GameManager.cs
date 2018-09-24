@@ -13,9 +13,13 @@ namespace GataclismaNaPista
 
         private ArrowSequence[] allArrowSequences;
 
+        //gambiarra
+        private ScoreCalculation scoreCalculation;
+
         private void Awake()
         {
             allArrowSequences = GameObject.FindObjectsOfType<ArrowSequence>();
+            scoreCalculation = GameObject.FindObjectOfType<ScoreCalculation>();
         }
 
         private void Start()
@@ -38,9 +42,10 @@ namespace GataclismaNaPista
 
         IEnumerator SpawnAllArrows()
         {
-            float musicLength = GetComponent<AudioSource>().clip.length; //deveria ser o numero de beats da musica
             int beats = 0;
-            while (true)
+            /*esses beats deveriam ser o numero de setas total da música, aqui eu fui contando e vi onde que era melhor parar
+             * mas pode mudar se achar necessário */
+            while (beats < 86)
             {
                 Debug.Log("Beats: " + beats);
                 beats++;
@@ -49,10 +54,32 @@ namespace GataclismaNaPista
                 int duration = 1;
                 foreach (ArrowSequence sequence in allArrowSequences)
                 {
-                    sequence.SpawnArrow(direction, duration);
+                     sequence.SpawnArrow(direction, duration);
                 }
                 yield return new WaitForSeconds(60f / BPM * duration);
             }
+            yield return new WaitForSeconds(2f);
+            StartCoroutine(EndGame());
+        }
+
+        IEnumerator EndGame()
+        {
+            text.GetComponent<RectTransform>().DOMoveY(0.5f, 0.5f);
+            text.DOColor(new Color(1, 1, 1, 1), 0.5f);
+            text.resizeTextForBestFit = true;
+            if(scoreCalculation.Winner > 0)
+            {
+                text.text = "DIREITA VENCE!";
+            }
+            else if(scoreCalculation.Winner < 0)
+            {
+                text.text = "ESQUERDA VENCE!";
+            }
+            else
+            {
+                text.text = "EMPATE!";
+            }
+            yield return null;
         }
     }
 }
