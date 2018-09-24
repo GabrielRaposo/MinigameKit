@@ -66,10 +66,22 @@ namespace GataclismaNaPista
 
         public void DestroyPeek(ScoreType score)
         {
-            if (score != ScoreType.wrongArrow && score != ScoreType.fail)
+            /*distance é variável gambiarra aqui:*/
+            float distance = Mathf.Abs(this.transform.position.y - peekArrowScript.transform.position.y);
+            if (score != ScoreType.fail && /*Gambiarra:*/ distance < PlayerController.almostDistance)
             {
-                peekArrowScript.animator.Play("ArrowExplode");
-                Destroy(ArrowQueue.Peek(), 1f);
+                if (score == ScoreType.wrongArrow)
+                {
+                    //gambiarra if
+                    if (unqueuedDeadArrow != null) Destroy(unqueuedDeadArrow);
+                    unqueuedDeadArrow = ArrowQueue.Peek();
+                    unqueuedDeadArrow.GetComponent<SpriteRenderer>().color = Color.gray;
+                }
+                else
+                {
+                    peekArrowScript.animator.Play("ArrowExplode");
+                    Destroy(ArrowQueue.Peek(), 1f);
+                }
                 ArrowQueue.Dequeue();
                 peekArrowScript = ArrowQueue.Peek().GetComponent<Arrow>();
                 ArrowQueue.Peek().GetComponent<SpriteRenderer>().color = Color.cyan;

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
+using DG.Tweening;
 
 namespace GataclismaNaPista
 {
@@ -29,6 +31,10 @@ namespace GataclismaNaPista
         public ScoreEvent onScoreChange;
 
 
+        public Text scoreText;
+        //Gambiarra esse Canvas publico aqui
+        public Canvas canvas;
+
         public float Score { get; private set; }
         private ArrowSequence sequence;
         private float boxSize;
@@ -36,7 +42,9 @@ namespace GataclismaNaPista
         private float perfectDistance;
         private float greatDistance;
         private float goodDistance;
-        private float almostDistance;
+
+        /*ele só é publico por gambiarra na arrowsequence*/
+        public static float almostDistance { get; private set; }
 
         //jogador da esquerda (player.side = false) ou direita (player.side = true)
         private PlayerInfo player;
@@ -80,6 +88,7 @@ namespace GataclismaNaPista
                     score = CalculateScore(distance);
                 }
                     else { FailArrow(); Debug.Log("Wrong Arrow!"); score = ScoreType.wrongArrow; }
+                InstantiateScoreText(score);
                 onScoreChange.Invoke(score);
             }
         }
@@ -136,6 +145,47 @@ namespace GataclismaNaPista
                 this.Score += points;
             }
             return ScoreType.fail;
+        }
+
+        private void InstantiateScoreText(ScoreType score)
+        {
+            string textString;
+            Color textColor;
+            switch (score)
+            {
+                case ScoreType.perfect:
+                    textString = "PURRFECT";
+                    textColor = Color.magenta;
+                    break;
+                case ScoreType.great:
+                    textString = "OTIMIAU";
+                    textColor = Color.cyan;
+                    break;
+                case ScoreType.good:
+                    textString = "BOM";
+                    textColor = Color.green;
+                    break;
+                case ScoreType.almost:
+                    textString = "QUASE";
+                    textColor = Color.yellow;
+                    break;
+                default:
+                    textString = "ERROU";
+                    textColor = Color.red;
+                    break;
+            }
+            Text textObj = Instantiate(scoreText, canvas.transform) as Text;
+            /*ó as gambiarra*/
+            if (transform.position.x > 0)
+            {
+                textObj.transform.position *= new Vector2(-1, 1);
+                textObj.alignment = TextAnchor.MiddleRight;
+            }
+            textObj.text = textString;
+            textObj.color = textColor;
+            textObj.DOFade(0, 0.8f);
+            textObj.GetComponent<RectTransform>().DOMoveY(textObj.transform.position.y + 0.1f, 0.5f);
+            Destroy(textObj, 0.7f);
         }
 
         //define propriedades da variável "player"
