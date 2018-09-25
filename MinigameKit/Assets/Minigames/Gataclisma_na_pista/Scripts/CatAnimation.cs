@@ -11,8 +11,8 @@ namespace GataclismaNaPista
         private PlayerInfo player;
         private int BPM;
 
-        [System.NonSerialized]
-        public Color color;
+        /*[System.NonSerialized]
+        public Color color;*/
 
         private void Awake()
         {
@@ -23,7 +23,7 @@ namespace GataclismaNaPista
 
         public void Start()
         {
-            GetComponent<SpriteRenderer>().color = color;
+            //GetComponent<SpriteRenderer>().color = this.color;
         }
 
         public void playAnimation(ScoreType score)

@@ -9,13 +9,14 @@ namespace GataclismaNaPista
     {
         //Gambiarra esse scoreBar. É pra trocar a cor do scoreBar de acordo com o player.
         public Image scoreBar;
+        public SpriteRenderer catSprite;
 
         public override void Start()
         {
             base.Start();
-
-            GetComponentInChildren<CatAnimation>().color = base.color;
-            scoreBar.color = color;
+            
+            scoreBar.color = base.color;
+            catSprite.color = base.color;
         }
     }
 
