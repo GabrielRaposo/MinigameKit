@@ -78,6 +78,9 @@ public class MedleyController : MonoBehaviour
                 currentMenu = mainMenu;
                 FirstScreen = "main";
                 break;
+            case "main menu":
+                CallScene("main menu");
+                break;
             default:
                 return;
         }
