@@ -57,7 +57,7 @@ namespace GataclismaNaPista
 
         IEnumerator AnimationDelay()
         {
-            yield return new WaitForSeconds(60f / BPM * 1.5f /* esse 1.5f é gambiarra; deveria ter um multiplicador da duration aqui */);
+            yield return new WaitForSeconds(60f / BPM * 2f /* esse 1.5f é gambiarra; deveria ter um multiplicador da duration aqui */);
             animator.Play("Default");
         }
     }
