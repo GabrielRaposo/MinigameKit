@@ -70,17 +70,22 @@ namespace GataclismaNaPista
             if(scoreCalculation.Winner > 0)
             {
                 text.text = "DIREITA VENCE!";
+                PlayersManager.result = PlayersManager.Result.RightWin;
             }
             else if(scoreCalculation.Winner < 0)
             {
                 text.text = "ESQUERDA VENCE!";
+                PlayersManager.result = PlayersManager.Result.LeftWin;
             }
             else
             {
                 text.text = "EMPATE!";
+                PlayersManager.result = PlayersManager.Result.Draw;
             }
             /*aqui deveria esperar um tempo e depois finalizar o jogo*/
-            yield return null;
+            yield return new WaitForSeconds(5);
+            
+            StartCoroutine(ModeManager.TransitionToMenu());
         }
     }
 }
