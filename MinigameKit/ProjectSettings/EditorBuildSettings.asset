@@ -18,12 +18,6 @@ EditorBuildSettings:
     path: Assets/Minigames/Comidinhas/Comidinhas.unity
     guid: 7bfc61a70d00a874796f0607f5729c45
   - enabled: 1
-    path: Assets/Scenes/Old/ControllerSetup.unity
-    guid: 0475c1a05358b9546a6a1f1905b83cd2
-  - enabled: 1
-    path: Assets/Scenes/Old/ModeSelect.unity
-    guid: 1abeb859e9f847c4e942ea0800b5b46b
-  - enabled: 1
-    path: Assets/Scenes/Old/MinigameTutorial.unity
-    guid: e25eb898c1ab77440a4ba10bf7b86c1e
+    path: Assets/Minigames/Bailarinas/Bailarinas.unity
+    guid: eaa67b9c0a17e8a41b1767bb9669288e
   m_configObjects: {}
