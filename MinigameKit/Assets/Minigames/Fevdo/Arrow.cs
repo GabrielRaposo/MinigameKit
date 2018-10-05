@@ -12,13 +12,16 @@ namespace Fevdo{
 
 		delegate void FlyPattern();
 		FlyPattern fly;
+		[SerializeField]
+		Transform fixDummy;
 
 		void Awake(){
 			rb = GetComponent<Rigidbody2D>();
+			fly = Nop;
 		}
 
 		public void Launch(float power){
-			rb.AddForce(transform.up*  speed);
+			rb.AddForce(transform.up * speed);
 			fly = RotateVelocity;
 		}
 
@@ -31,17 +34,14 @@ namespace Fevdo{
 			var angle = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.forward), 1);
 		}
-
-		void Fix(){
-		}
-
+		void Nop(){}
 		void OnCollisionEnter2D(Collision2D coll){
-			rb.gravityScale = 0.0f;
-			rb.Sleep();
-			
-			rb.velocity = Vector2.zero;
-			rb.isKinematic = true;
-			fly = Fix;
+			fly = Nop;
+			Fixable fixable =  coll.gameObject.GetComponentInParent<Fixable>();
+			if(fixable != null){
+				fixable.Fix(fixDummy);
+				Destroy(gameObject);
+			}
 		}
 	}
 }
