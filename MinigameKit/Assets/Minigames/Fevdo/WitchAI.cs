@@ -6,6 +6,8 @@ namespace Fevdo{
         State state;
         Tweener tween;
 
+        Vector2 [,] possomGrid;
+
         void Start(){
         }
 
@@ -19,7 +21,6 @@ namespace Fevdo{
             return new Vector3[]{transform.position, randomPos(), randomPos()};
 
         }
-
 
 
         Vector2 randomPos(){
